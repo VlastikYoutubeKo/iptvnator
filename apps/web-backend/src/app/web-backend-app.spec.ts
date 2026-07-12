@@ -196,6 +196,85 @@ https://stream.example/news.m3u8`);
         );
     });
 
+    it('converts playlist URL credentials into a basic Authorization header', async () => {
+        const httpClient = new StubHttpClient();
+        let idCounter = 0;
+        httpClient.queueResponse(`#EXTM3U
+#EXTINF:-1 tvg-id="news" group-title="News",News Channel
+https://stream.example/news.m3u8`);
+
+        await withServer(
+            createWebBackendApp({
+                clientOrigins: ['http://localhost:4200'],
+                guid: () => `fixed-id-${++idCounter}`,
+                httpClient,
+                now: () => new Date('2026-05-15T08:00:00.000Z'),
+                resolveHostname: resolvePublicHost,
+            }),
+            async (baseUrl) => {
+                const targetId = await registerProviderTarget(
+                    baseUrl,
+                    'https://tvh:s%40cret@provider.example/playlist'
+                );
+                const response = await fetch(
+                    `${baseUrl}/parse?targetId=${targetId}`,
+                    { headers: { Origin: 'http://localhost:4200' } }
+                );
+                const body = (await response.json()) as { url: string };
+
+                expect(response.status).toBe(200);
+                expect(body.url).toBe(
+                    'https://tvh:s%40cret@provider.example/playlist'
+                );
+                expect(httpClient.requests).toEqual([
+                    {
+                        headers: {
+                            Authorization: `Basic ${Buffer.from('tvh:s@cret').toString('base64')}`,
+                        },
+                        params: undefined,
+                        url: 'https://provider.example/playlist',
+                    },
+                ]);
+            }
+        );
+    });
+
+    it('converts XMLTV URL credentials into a basic Authorization header', async () => {
+        const httpClient = new StubHttpClient();
+        httpClient.queueResponse(
+            '<?xml version="1.0"?><tv><channel id="news"></channel></tv>'
+        );
+
+        await withServer(
+            createWebBackendApp({
+                clientOrigins: ['http://localhost:4200'],
+                httpClient,
+                resolveHostname: resolvePublicHost,
+            }),
+            async (baseUrl) => {
+                const targetId = await registerProviderTarget(
+                    baseUrl,
+                    'https://tvh:secret@provider.example/xmltv'
+                );
+                const response = await fetch(
+                    `${baseUrl}/parse-xml?targetId=${targetId}`,
+                    { headers: { Origin: 'http://localhost:4200' } }
+                );
+
+                expect(response.status).toBe(200);
+                expect(httpClient.requests).toEqual([
+                    {
+                        headers: {
+                            Authorization: `Basic ${Buffer.from('tvh:secret').toString('base64')}`,
+                        },
+                        params: undefined,
+                        url: 'https://provider.example/xmltv',
+                    },
+                ]);
+            }
+        );
+    });
+
     it('allows browser preflight checks for provider target registration', async () => {
         await withServer(
             createWebBackendApp({

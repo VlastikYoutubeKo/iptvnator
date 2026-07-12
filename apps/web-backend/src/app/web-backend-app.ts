@@ -224,11 +224,13 @@ export function createWebBackendApp(
         }
 
         try {
+            const request = toProviderRequestTarget(url);
             // Provider URLs are validated by /provider-targets before they enter the registry.
             // codeql[js/request-forgery]
-            const response = await httpClient.get(url.href, {
+            const response = await httpClient.get(request.href, {
                 params: getProxyParams(req, ['targetId']),
                 headers: {
+                    ...(request.headers ?? {}),
                     ...(macAddress ? { Cookie: `mac=${macAddress}` } : {}),
                     ...(token ? { Authorization: `Bearer ${token}` } : {}),
                 },
@@ -283,13 +285,6 @@ async function validateProviderUrl(
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
         return {
             message: 'Only http and https provider URLs are supported',
-            status: 400,
-        };
-    }
-
-    if (url.username || url.password) {
-        return {
-            message: 'Provider URL credentials are not supported',
             status: 400,
         };
     }
@@ -401,6 +396,41 @@ function getProxyParams(
     return params;
 }
 
+interface ProviderRequestTarget {
+    readonly href: string;
+    readonly headers?: Record<string, string>;
+}
+
+function decodeUserinfoComponent(value: string): string {
+    try {
+        return decodeURIComponent(value);
+    } catch {
+        return value;
+    }
+}
+
+/**
+ * Splits embedded `user:pass@` URL credentials into an HTTP Basic
+ * Authorization header so upstream requests never carry credentials in the
+ * request target.
+ */
+function toProviderRequestTarget(url: URL): ProviderRequestTarget {
+    if (!url.username && !url.password) {
+        return { href: url.href };
+    }
+
+    const cleanUrl = new URL(url.href);
+    cleanUrl.username = '';
+    cleanUrl.password = '';
+    const credentials = `${decodeUserinfoComponent(url.username)}:${decodeUserinfoComponent(url.password)}`;
+    return {
+        headers: {
+            Authorization: `Basic ${Buffer.from(credentials).toString('base64')}`,
+        },
+        href: cleanUrl.href,
+    };
+}
+
 function appendPathSegment(url: URL, segment: string): string {
     const nextUrl = new URL(url.href);
     nextUrl.pathname = `${nextUrl.pathname.replace(/\/+$/, '')}/${segment}`;
@@ -439,9 +469,13 @@ async function handlePlaylistParse(options: {
     readonly url: string;
 }): Promise<Record<string, unknown> | PlaylistParseError> {
     try {
+        const request = toProviderRequestTarget(new URL(options.url));
         // Provider URLs are validated by /provider-targets before playlist parsing.
         // codeql[js/request-forgery]
-        const response = await options.httpClient.get<string>(options.url);
+        const response = await options.httpClient.get<string>(
+            request.href,
+            request.headers ? { headers: request.headers } : undefined
+        );
         const parsedPlaylist = parsePlaylist(response.data);
         const title = getLastUrlSegment(options.url);
         return createPlaylistObject({
@@ -466,10 +500,11 @@ async function fetchEpgDataFromUrl(
     httpClient: WebBackendHttpClient,
     url: URL
 ): Promise<unknown> {
-    const href = url.href;
+    const request = toProviderRequestTarget(url);
     // Provider URLs are validated by /provider-targets before XMLTV parsing.
     // codeql[js/request-forgery]
-    const response = await httpClient.get<ArrayBuffer | string>(href, {
+    const response = await httpClient.get<ArrayBuffer | string>(request.href, {
+        ...(request.headers ? { headers: request.headers } : {}),
         ...(url.pathname.endsWith('.gz')
             ? { responseType: 'arraybuffer' }
             : {}),

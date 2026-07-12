@@ -33,11 +33,18 @@ export interface RemoteUrlPolicy {
     resolveHostname?: (hostname: string) => Promise<readonly string[]>;
 }
 
+export interface RemoteUrlBasicAuth {
+    username: string;
+    password: string;
+}
+
 export interface ValidatedRemoteUrl {
     /** Parsed URL, retaining the original hostname for TLS SNI and Host. */
     url: URL;
     /** Validated addresses that socket-level DNS lookup must be pinned to. */
     addresses?: readonly string[];
+    /** HTTP Basic credentials extracted from the URL's `user:pass@` part. */
+    auth?: RemoteUrlBasicAuth;
 }
 
 function isTruthyEnvironmentOptIn(value: string | undefined): boolean {
@@ -47,6 +54,33 @@ function isTruthyEnvironmentOptIn(value: string | undefined): boolean {
 
 export function isPrivateNetworkUrlAccessAllowed(): boolean {
     return isTruthyEnvironmentOptIn(process.env[PRIVATE_NETWORK_URLS_ENV]);
+}
+
+function decodeUserinfoComponent(value: string): string {
+    try {
+        return decodeURIComponent(value);
+    } catch {
+        return value;
+    }
+}
+
+/**
+ * Extracts embedded `user:pass@` credentials so callers can send them as an
+ * HTTP Basic Authorization header, and strips them from the URL so they never
+ * reach request lines, redirects, or logs.
+ */
+function extractUrlBasicAuth(url: URL): RemoteUrlBasicAuth | undefined {
+    if (!url.username && !url.password) {
+        return undefined;
+    }
+
+    const auth = {
+        password: decodeUserinfoComponent(url.password),
+        username: decodeUserinfoComponent(url.username),
+    };
+    url.username = '';
+    url.password = '';
+    return auth;
 }
 
 function normalizeHostname(hostname: string): string {
@@ -220,18 +254,16 @@ export async function validateRemoteUrl(
         throw new UnsafeUrlError('Only http and https URLs are supported');
     }
 
-    if (url.username || url.password) {
-        throw new UnsafeUrlError('URL credentials are not supported');
-    }
+    const auth = extractUrlBasicAuth(url);
 
     const hostname = normalizeHostname(url.hostname);
     if (policy.allowPrivateNetworks) {
         if (!policy.pinAllowedPrivateNetworkHosts) {
-            return { url };
+            return { auth, url };
         }
 
         if (isIP(hostname) !== 0) {
-            return { url, addresses: [hostname] };
+            return { auth, url, addresses: [hostname] };
         }
 
         const resolveHostname =
@@ -251,6 +283,7 @@ export async function validateRemoteUrl(
         }
 
         return {
+            auth,
             url,
             addresses: addresses.map((address) => normalizeHostname(address)),
         };
@@ -263,7 +296,7 @@ export async function validateRemoteUrl(
     }
 
     if (isIP(hostname) !== 0) {
-        return { url, addresses: [hostname] };
+        return { auth, url, addresses: [hostname] };
     }
 
     {
@@ -292,6 +325,7 @@ export async function validateRemoteUrl(
         }
 
         return {
+            auth,
             url,
             addresses: addresses.map((address) => normalizeHostname(address)),
         };

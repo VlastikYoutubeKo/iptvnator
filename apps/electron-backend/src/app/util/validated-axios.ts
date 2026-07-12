@@ -184,6 +184,12 @@ export async function requestWithValidatedRedirects<T = unknown>(
             getRedirectValidationPolicy(currentUrl, initialOrigin, policy)
         );
         const validatedUrl = validatedTarget.url;
+        if (validatedTarget.auth) {
+            // `user:pass@` URL credentials become HTTP Basic auth. Storing them
+            // on the request config keeps them for same-origin redirects while
+            // the cross-origin branch below still strips them.
+            requestConfig = { ...requestConfig, auth: validatedTarget.auth };
+        }
         const isInitialRequest = !initialOrigin;
         if (isInitialRequest) {
             initialOrigin = validatedUrl.origin;

@@ -148,8 +148,12 @@ the previous override.
 
 Renderer-triggered HTTP requests must pass through the URL policy in
 `apps/electron-backend/src/app/events/url-safety.ts`. The policy rejects
-non-HTTP(S) URLs and embedded credentials, and strict callers also reject
-loopback, private, reserved, and DNS-resolved private addresses. IPv4-mapped
+non-HTTP(S) URLs, and strict callers also reject
+loopback, private, reserved, and DNS-resolved private addresses. Embedded
+`user:pass@` URL credentials (e.g. tvheadend playlist and XMLTV sources) are
+supported: validation extracts them, strips them from the URL that is fetched
+and logged, and the validated Axios helper sends them as an HTTP Basic
+`Authorization` header instead. IPv4-mapped
 IPv6 literals are decoded before classification, including hexadecimal forms
 such as `::ffff:7f00:1`, so alternate IPv6 spelling cannot bypass IPv4 rules.
 
@@ -170,8 +174,12 @@ URL in settings and retries that source only. The
 `IPTVNATOR_ALLOW_PRIVATE_NETWORK_URLS=1` environment flag remains an
 emergency/development process-wide override for strict EPG fetches. Directly
 configured Xtream, Stalker, and playlist providers retain private-network
-support, but still require HTTP(S), reject embedded credentials, and validate
-redirects.
+support, but still require HTTP(S) and validate redirects. Embedded URL
+credentials become Basic auth for the initial request and same-origin redirect
+hops only; the cross-origin redirect rules above drop them. Xtream server URLs
+are the exception: `normalizeXtreamServerUrl` still rejects embedded
+credentials because Xtream authenticates through its own username/password
+fields.
 
 Callers that allow private-network provider URLs but only need redirects within
 the same provider origin should pass both `allowPrivateNetworkRedirects: false`

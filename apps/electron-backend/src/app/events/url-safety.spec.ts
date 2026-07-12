@@ -42,12 +42,44 @@ describe('url-safety', () => {
             ).rejects.toBeInstanceOf(UnsafeUrlError);
         });
 
-        it('rejects embedded credentials', async () => {
-            await expect(
-                assertRemoteUrlAllowed('http://user:pass@example.com', {
-                    resolveHostname: publicResolver,
-                })
-            ).rejects.toBeInstanceOf(UnsafeUrlError);
+        it('extracts embedded credentials as basic auth and strips them from the URL', async () => {
+            const target = await validateRemoteUrl(
+                'http://user:p%40ss@example.com/playlist.m3u',
+                { resolveHostname: publicResolver }
+            );
+
+            expect(target.auth).toEqual({
+                password: 'p@ss',
+                username: 'user',
+            });
+            expect(target.url.username).toBe('');
+            expect(target.url.password).toBe('');
+            expect(target.url.toString()).toBe(
+                'http://example.com/playlist.m3u'
+            );
+        });
+
+        it('extracts embedded credentials for allowed private-network URLs', async () => {
+            const target = await validateRemoteUrl(
+                'http://tvh:secret@192.168.1.10:9981/playlist',
+                { allowPrivateNetworks: true }
+            );
+
+            expect(target.auth).toEqual({
+                password: 'secret',
+                username: 'tvh',
+            });
+            expect(target.url.toString()).toBe(
+                'http://192.168.1.10:9981/playlist'
+            );
+        });
+
+        it('reports no auth for URLs without credentials', async () => {
+            const target = await validateRemoteUrl('https://example.com', {
+                resolveHostname: publicResolver,
+            });
+
+            expect(target.auth).toBeUndefined();
         });
 
         it('rejects loopback literal', async () => {

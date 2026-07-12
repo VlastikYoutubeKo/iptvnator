@@ -133,7 +133,10 @@ accept raw target URLs in query strings. Registration validates the target URL
 before any outbound request:
 
 - only `http:` and `https:` provider URLs are accepted
-- URL credentials are rejected
+- embedded `user:pass@` URL credentials are supported: proxy requests strip
+  them from the upstream request target and send them as an HTTP Basic
+  `Authorization` header instead (Xtream provider URLs still reject them
+  because Xtream uses its own username/password fields)
 - loopback, private, link-local, and reserved network targets are blocked by
   default
 - `IPTVNATOR_PROXY_ALLOW_PRIVATE_NETWORKS=1` explicitly enables trusted

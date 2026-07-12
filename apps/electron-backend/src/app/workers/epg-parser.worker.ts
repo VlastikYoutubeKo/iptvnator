@@ -21,6 +21,7 @@ import {
     isPrivateNetworkUrlAccessAllowed,
     UnsafeUrlError,
 } from '../events/url-safety';
+import { redactUrlCredentials } from '../util/redact-url';
 import { createPlaylistAgentFactory } from '../util/secure-https';
 import {
     getHostnameFromErrorUrl,
@@ -102,7 +103,7 @@ async function fetchAndParseEpgStreaming(
     url: string,
     options: ElectronBridgeTrustOptions = {}
 ): Promise<void> {
-    console.log(loggerLabel, `Fetching EPG from ${url}`);
+    console.log(loggerLabel, `Fetching EPG from ${redactUrlCredentials(url)}`);
 
     // Create database connection in worker
     const epgDb = new EpgDatabase(Database);
@@ -143,7 +144,7 @@ async function fetchAndParseEpgStreaming(
         if (responseUrl && responseUrl !== url) {
             console.log(
                 loggerLabel,
-                `Resolved EPG redirect: ${url} -> ${responseUrl}`
+                `Resolved EPG redirect: ${redactUrlCredentials(url)} -> ${responseUrl}`
             );
         }
 
@@ -223,7 +224,10 @@ async function fetchAndParseEpgStreaming(
                     // real problem (unreachable feed, SAX parse failure, etc.).
                     if (stats.totalChannels === 0) {
                         const errorMessage = `EPG parse produced 0 channels — feed may be unreachable or unsupported`;
-                        console.error(loggerLabel, `${errorMessage}: ${url}`);
+                        console.error(
+                            loggerLabel,
+                            `${errorMessage}: ${redactUrlCredentials(url)}`
+                        );
                         const response: WorkerResponse = {
                             type: 'EPG_ERROR',
                             url,

@@ -104,6 +104,57 @@ describe('requestWithValidatedRedirects', () => {
         expect(requestConfig.url).toBe('https://epg.example/guide.xml');
     });
 
+    it('sends URL credentials as basic auth and strips them from the request URL', async () => {
+        axiosMock.mockResolvedValueOnce({
+            status: 200,
+            headers: {},
+            data: '#EXTM3U',
+        });
+
+        await requestWithValidatedRedirects(
+            'https://user:p%40ss@example.com/playlist.m3u',
+            { method: 'GET' },
+            { resolveHostname: publicResolver }
+        );
+
+        const requestConfig = axiosMock.mock.calls[0][0];
+        expect(requestConfig.url).toBe('https://example.com/playlist.m3u');
+        expect(requestConfig.auth).toEqual({
+            password: 'p@ss',
+            username: 'user',
+        });
+    });
+
+    it('keeps URL credentials on same-origin redirects and drops them cross-origin', async () => {
+        axiosMock
+            .mockResolvedValueOnce({
+                status: 302,
+                headers: { location: 'https://example.com/moved.m3u' },
+            })
+            .mockResolvedValueOnce({
+                status: 302,
+                headers: { location: 'https://other.example/final.m3u' },
+            })
+            .mockResolvedValueOnce({
+                status: 200,
+                headers: {},
+                data: '#EXTM3U',
+            });
+
+        await requestWithValidatedRedirects(
+            'https://user:pass@example.com/playlist.m3u',
+            { method: 'GET' },
+            { resolveHostname: publicResolver }
+        );
+
+        expect(axiosMock).toHaveBeenCalledTimes(3);
+        expect(axiosMock.mock.calls[1][0].auth).toEqual({
+            password: 'pass',
+            username: 'user',
+        });
+        expect(axiosMock.mock.calls[2][0].auth).toBeUndefined();
+    });
+
     it('supplies the validated lookup to an explicit HTTP agent factory', async () => {
         axiosMock.mockResolvedValueOnce({
             status: 200,

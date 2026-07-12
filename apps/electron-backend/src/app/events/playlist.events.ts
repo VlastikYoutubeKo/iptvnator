@@ -17,6 +17,7 @@ import {
     PlaylistRefreshEvent,
     PlaylistRefreshPayload,
 } from '@iptvnator/shared/interfaces';
+import { redactUrlCredentials } from '../util/redact-url';
 import { resolveWorkerRuntimeBootstrap } from '../workers/worker-runtime-paths';
 import type {
     PlaylistRefreshWorkerMessage,
@@ -161,7 +162,7 @@ ipcMain.handle(
                 if (playlist.importDate && playlist.url) {
                     // Update from URL
                     console.log(
-                        `Updating playlist "${playlist.title}" from URL: ${playlist.url}`
+                        `Updating playlist "${playlist.title}" from URL: ${redactUrlCredentials(playlist.url)}`
                     );
                     playlistObject = await fetchPlaylistFromUrl(
                         playlist.url,

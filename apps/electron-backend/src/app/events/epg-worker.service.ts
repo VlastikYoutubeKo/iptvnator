@@ -6,6 +6,7 @@ import {
     ElectronBridgeSecurityErrorCode,
     ElectronBridgeTrustOptions,
 } from '@iptvnator/shared/interfaces';
+import { redactUrlCredentials } from '../util/redact-url';
 import { resolveWorkerRuntimeBootstrap } from '../workers/worker-runtime-paths';
 
 export type EpgProgressStatus = 'queued' | 'loading' | 'complete' | 'error';
@@ -180,7 +181,10 @@ export class EpgWorkerService {
                 const errorMessage = `EPG fetch timed out after ${
                     this.fetchTimeoutMs / 1000
                 }s without progress`;
-                console.error(this.loggerLabel, `${errorMessage}: ${url}`);
+                console.error(
+                    this.loggerLabel,
+                    `${errorMessage}: ${redactUrlCredentials(url)}`
+                );
                 this.sendProgressToRenderer(
                     url,
                     'error',
@@ -322,7 +326,10 @@ export class EpgWorkerService {
             worker.on('exit', (code) => {
                 if (settled) return;
                 const errorMessage = `Worker exited unexpectedly (code ${code})`;
-                console.error(this.loggerLabel, `${errorMessage}: ${url}`);
+                console.error(
+                    this.loggerLabel,
+                    `${errorMessage}: ${redactUrlCredentials(url)}`
+                );
                 this.sendProgressToRenderer(
                     url,
                     'error',
