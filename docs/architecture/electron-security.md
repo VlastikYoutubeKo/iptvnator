@@ -157,6 +157,15 @@ and logged, and the validated Axios helper sends them as an HTTP Basic
 IPv6 literals are decoded before classification, including hexadecimal forms
 such as `::ffff:7f00:1`, so alternate IPv6 spelling cannot bypass IPv4 rules.
 
+The renderer needs the same embedded-credentials handling for playback:
+Chromium's Fetch spec forbids constructing requests from URLs that contain
+credentials, so stream URLs like `https://user:pass@host/stream/...` would
+throw in `fetch`-based and XHR-based players (hls.js). The bootstrap patch in
+`apps/web/src/browser-credentials-patch.ts` (applied from `apps/web/src/main.ts`)
+wraps `window.fetch` and `XMLHttpRequest.prototype.open`: it strips
+`user:pass@` from the URL and sends the credentials as an HTTP Basic
+`Authorization` header instead, mirroring the main-process behavior.
+
 Remote request callers must use the validated Axios redirect helper so every
 redirect target is checked before the main process follows it. Under the strict
 policy, the helper pins the socket lookup to the IP addresses that passed
