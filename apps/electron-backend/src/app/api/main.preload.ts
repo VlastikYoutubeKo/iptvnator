@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer, webUtils } from 'electron';
 import {
+    AMZ_IMPORT_RESOLVE,
     APP_UPDATE_CHECK,
     APP_UPDATE_DOWNLOAD,
     APP_UPDATE_GET_RELEASE_NOTES,
@@ -340,6 +341,8 @@ const electronApi: ElectronBridgeApi = {
         title?: string,
         options?: ElectronBridgeTrustOptions
     ) => ipcRenderer.invoke('fetch-playlist-by-url', url, title, options),
+    amzImportResolve: (input: string) =>
+        ipcRenderer.invoke(AMZ_IMPORT_RESOLVE, input),
     updatePlaylistFromFilePath: (filePath: string, title: string) =>
         ipcRenderer.invoke('update-playlist-from-file-path', filePath, title),
     openPlaylistFromFile: () => ipcRenderer.invoke('open-playlist-from-file'),

@@ -1,3 +1,4 @@
+import { AmzImportResult } from './amz-import.interface';
 import {
     EmbeddedMpvBounds,
     EmbeddedMpvRecordingStartOptions,
@@ -536,6 +537,8 @@ export interface ElectronBridgeApi {
         title?: string,
         options?: ElectronBridgeTrustOptions
     ) => Promise<Playlist>;
+    /** Resolves an AMZ IPTV share hash/URL into an Xtream or Stalker account */
+    amzImportResolve: (input: string) => Promise<AmzImportResult>;
     updatePlaylistFromFilePath: (
         filePath: string,
         title: string

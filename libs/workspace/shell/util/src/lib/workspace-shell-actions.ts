@@ -6,7 +6,8 @@ export type WorkspacePlaylistType =
     | 'url'
     | 'text'
     | 'file'
-    | 'stalker';
+    | 'stalker'
+    | 'amz';
 export type PlaylistCategory = 'm3u' | 'xtream' | 'stalker';
 export type M3uSubType = 'url' | 'file' | 'text';
 

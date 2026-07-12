@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "بوابة Stalker",
             "METHOD_STALKER_SUB": "عنوان MAC ورابط البوابة",
             "METHOD_TEXT_LABEL": "نص m3u خام",
-            "METHOD_TEXT_SUB": "للقوائم المؤقتة ولا إلى عندك غير النص"
+            "METHOD_TEXT_SUB": "للقوائم المؤقتة ولا إلى عندك غير النص",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "لصق كود المشاركة ولا الرابط من iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "جر وأفلت الملفات هنا",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "استورد كنص",
-        "PARSING_ERROR": "خطأ: التحليل فشل، ماشي قائمة تشغيل صحيحة:"
+        "PARSING_ERROR": "خطأ: التحليل فشل، ماشي قائمة تشغيل صحيحة:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "لصق رابط AMZ IPTV ولا الكود",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… ولا الكود ديال 32 حرف",
+            "INPUT_HINT": "خدام بالرابط الكامل ولا غير الكود",
+            "NAME_LABEL": "السمية (اختياري)",
+            "ADD": "استيراد",
+            "RESOLVING": "كيتحقق",
+            "ERROR_INVALID_INPUT": "هادشي ما كيبانش بحال رابط ولا كود ديال AMZ IPTV.",
+            "ERROR_NOT_FOUND": "الرابط ما كاينش ولا سالات صلاحيتو.",
+            "ERROR_EXPIRED": "هاد الاشتراك ما بقاش خدام.",
+            "ERROR_RATE_LIMITED": "بزاف ديال المحاولات، عاود من بعد شوية.",
+            "ERROR_AUTH": "ما قدرناش نتأكدو من AMZ IPTV. عاود المحاولة.",
+            "ERROR_NETWORK": "الاتصال بـ AMZ IPTV ما نجحش. تأكد من الشبكة وعاود.",
+            "ERROR_PORTAL_AUTH": "البوابة ما قبلاتش الحساب. عاود من بعد."
+        }
     },
     "SETTINGS": {
         "TITLE": "الإعدادات",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "إثراء البيانات خدام ولكن ما كاينش مفتاح TMDB API — ما غيتحمل والو. دخل المفتاح ديالك لتحت (مجاني للاستعمال الشخصي)."
     },
     "THEMES": {
         "DARK_THEME": "داكن",

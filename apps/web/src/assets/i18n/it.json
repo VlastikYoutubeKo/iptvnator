@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Portale Stalker",
             "METHOD_STALKER_SUB": "Indirizzo MAC e URL del portale",
             "METHOD_TEXT_LABEL": "Testo m3u grezzo",
-            "METHOD_TEXT_SUB": "Per liste occasionali o quando hai solo il testo"
+            "METHOD_TEXT_SUB": "Per liste occasionali o quando hai solo il testo",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Incolla un hash o link di condivisione da iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Trascina e rilascia qui i file",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Importato come testo",
-        "PARSING_ERROR": "Errore: analisi fallita, non è una playlist valida:"
+        "PARSING_ERROR": "Errore: analisi fallita, non è una playlist valida:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "Incolla il link o il codice AMZ IPTV",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… o il codice di 32 caratteri",
+            "INPUT_HINT": "Accetta l'URL completo o solo l'hash",
+            "NAME_LABEL": "Nome (facoltativo)",
+            "ADD": "Importa",
+            "RESOLVING": "Risoluzione",
+            "ERROR_INVALID_INPUT": "Questo non sembra un link o codice AMZ IPTV.",
+            "ERROR_NOT_FOUND": "Link non trovato o scaduto.",
+            "ERROR_EXPIRED": "Questo abbonamento non è più attivo.",
+            "ERROR_RATE_LIMITED": "Troppi tentativi, riprova tra poco.",
+            "ERROR_AUTH": "Autorizzazione con AMZ IPTV non riuscita. Riprova.",
+            "ERROR_NETWORK": "Connessione ad AMZ IPTV non riuscita. Controlla la rete e riprova.",
+            "ERROR_PORTAL_AUTH": "Il portale non ha accettato l'account risolto. Riprova più tardi."
+        }
     },
     "SETTINGS": {
         "TITLE": "Impostazioni IPTVnator",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "L'arricchimento dei metadati è attivo ma non è impostata alcuna chiave API TMDB — non verrà caricato nulla. Inserisci la tua chiave personale qui sotto (gratuita per uso personale)."
     },
     "THEMES": {
         "DARK_THEME": "Scuro",

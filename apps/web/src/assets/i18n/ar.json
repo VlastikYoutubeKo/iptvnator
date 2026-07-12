@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "بوابة Stalker",
             "METHOD_STALKER_SUB": "عنوان MAC ورابط البوابة",
             "METHOD_TEXT_LABEL": "نص m3u الخام",
-            "METHOD_TEXT_SUB": "للقوائم العابرة أو عندما يتوفر لديك النص فقط"
+            "METHOD_TEXT_SUB": "للقوائم العابرة أو عندما يتوفر لديك النص فقط",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "الصق رمز المشاركة أو الرابط من iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "اسحب وأفلت الملفات هنا",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "مستوردة كنص",
-        "PARSING_ERROR": "خطأ: فشل التحليل، ليست قائمة تشغيل صالحة:"
+        "PARSING_ERROR": "خطأ: فشل التحليل، ليست قائمة تشغيل صالحة:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "الصق رابط AMZ IPTV أو الرمز",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… أو الرمز المكوّن من 32 حرفًا",
+            "INPUT_HINT": "يقبل الرابط الكامل أو الرمز فقط",
+            "NAME_LABEL": "الاسم (اختياري)",
+            "ADD": "استيراد",
+            "RESOLVING": "جارٍ التحقق",
+            "ERROR_INVALID_INPUT": "هذا لا يبدو رابط AMZ IPTV أو رمزه.",
+            "ERROR_NOT_FOUND": "الرابط غير موجود أو منتهي الصلاحية.",
+            "ERROR_EXPIRED": "هذا الاشتراك لم يعد نشطًا.",
+            "ERROR_RATE_LIMITED": "محاولات كثيرة جدًا، حاول مرة أخرى بعد قليل.",
+            "ERROR_AUTH": "فشل التفويض مع AMZ IPTV. حاول مرة أخرى.",
+            "ERROR_NETWORK": "فشل الاتصال بـ AMZ IPTV. تحقق من الشبكة وحاول مجددًا.",
+            "ERROR_PORTAL_AUTH": "لم يقبل المدخل الحساب الذي تم جلبه. حاول لاحقًا."
+        }
     },
     "SETTINGS": {
         "TITLE": "الإعدادات",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "إثراء البيانات الوصفية مفعّل لكن لم يتم تعيين مفتاح TMDB API — لن يتم تحميل أي شيء. أدخل مفتاحك الشخصي أدناه (مجاني للاستخدام الشخصي)."
     },
     "THEMES": {
         "DARK_THEME": "داكن",

@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalkerポータル",
             "METHOD_STALKER_SUB": "MACアドレスとポータルURL",
             "METHOD_TEXT_LABEL": "M3Uテキスト",
-            "METHOD_TEXT_SUB": "一度限りのリストやテキストしかない場合に"
+            "METHOD_TEXT_SUB": "一度限りのリストやテキストしかない場合に",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "iptv.tutoje.cz の共有ハッシュまたはリンクを貼り付け"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "ここにファイルをドラッグ＆ドロップ",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "テキストとしてインポート",
-        "PARSING_ERROR": "エラー：解析に失敗しました。有効なプレイリストではありません："
+        "PARSING_ERROR": "エラー：解析に失敗しました。有効なプレイリストではありません：",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "AMZ IPTV のリンクまたはコードを貼り付け",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… または32文字のコード",
+            "INPUT_HINT": "共有URL全体でもハッシュのみでも使えます",
+            "NAME_LABEL": "名前(任意)",
+            "ADD": "インポート",
+            "RESOLVING": "解決中",
+            "ERROR_INVALID_INPUT": "AMZ IPTV のリンクまたはコードではないようです。",
+            "ERROR_NOT_FOUND": "リンクが見つからないか期限切れです。",
+            "ERROR_EXPIRED": "このサブスクリプションは有効ではありません。",
+            "ERROR_RATE_LIMITED": "試行回数が多すぎます。しばらくしてから再試行してください。",
+            "ERROR_AUTH": "AMZ IPTV の認証に失敗しました。もう一度お試しください。",
+            "ERROR_NETWORK": "AMZ IPTV への接続に失敗しました。ネットワークを確認して再試行してください。",
+            "ERROR_PORTAL_AUTH": "ポータルが取得したアカウントを受け付けませんでした。後でお試しください。"
+        }
     },
     "SETTINGS": {
         "TITLE": "設定",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "メタデータ拡充が有効ですが、TMDB APIキーが未設定のため何も読み込まれません。下に個人のAPIキーを入力してください(個人利用は無料)。"
     },
     "THEMES": {
         "DARK_THEME": "ダーク",

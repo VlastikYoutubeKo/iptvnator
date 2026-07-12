@@ -2,6 +2,7 @@ import { Conf } from 'electron-conf/main';
 import { getElectronConfigDirectory } from '@iptvnator/shared/database';
 
 export const WINDOW_BOUNDS = 'WINDOW_BOUNDS';
+export const AMZ_IMPORT_API_KEY = 'AMZ_IMPORT_API_KEY';
 export const MPV_PLAYER_PATH = 'MPV_PLAYER_PATH';
 export const MPV_PLAYER_ARGUMENTS = 'MPV_PLAYER_ARGUMENTS';
 export const VLC_PLAYER_PATH = 'VLC_PLAYER_PATH';
@@ -11,6 +12,7 @@ export const VLC_REUSE_INSTANCE = 'VLC_REUSE_INSTANCE';
 
 export type StoreType = {
     [WINDOW_BOUNDS]: Electron.Rectangle;
+    [AMZ_IMPORT_API_KEY]: string;
     [MPV_PLAYER_PATH]: string;
     [MPV_PLAYER_ARGUMENTS]: string;
     [VLC_PLAYER_PATH]: string;

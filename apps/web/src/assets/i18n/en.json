@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker portal",
             "METHOD_STALKER_SUB": "MAC address and portal URL",
             "METHOD_TEXT_LABEL": "Raw m3u text",
-            "METHOD_TEXT_SUB": "For one-off lists or when you only have text"
+            "METHOD_TEXT_SUB": "For one-off lists or when you only have text",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Paste a share hash or link from iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Drop an .m3u or .m3u8 file here",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Imported as text",
-        "PARSING_ERROR": "Error: Parsing failed, not a valid playlist:"
+        "PARSING_ERROR": "Error: Parsing failed, not a valid playlist:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "Paste AMZ IPTV link or code",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… or the 32-character code",
+            "INPUT_HINT": "Accepts the full share URL or just the hash",
+            "NAME_LABEL": "Name (optional)",
+            "ADD": "Import",
+            "RESOLVING": "Resolving",
+            "ERROR_INVALID_INPUT": "That doesn't look like an AMZ IPTV link or code.",
+            "ERROR_NOT_FOUND": "Link not found or expired.",
+            "ERROR_EXPIRED": "This subscription is no longer active.",
+            "ERROR_RATE_LIMITED": "Too many attempts, try again in a bit.",
+            "ERROR_AUTH": "Could not authorize with AMZ IPTV. Try again.",
+            "ERROR_NETWORK": "Connection to AMZ IPTV failed. Check your network and try again.",
+            "ERROR_PORTAL_AUTH": "The portal did not accept the resolved account. Try again later."
+        }
     },
     "SETTINGS": {
         "TITLE": "Settings",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "Metadata enrichment is enabled but no TMDB API key is set — nothing will load. Enter your personal API key below (free for personal use)."
     },
     "THEMES": {
         "DARK_THEME": "Dark",

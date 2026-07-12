@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker 入口網站",
             "METHOD_STALKER_SUB": "MAC 位址與入口網址",
             "METHOD_TEXT_LABEL": "M3U 原始文字",
-            "METHOD_TEXT_SUB": "適合一次性清單，或您只有文字內容時使用"
+            "METHOD_TEXT_SUB": "適合一次性清單，或您只有文字內容時使用",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "貼上來自 iptv.tutoje.cz 的分享雜湊或連結"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "在此處拖放檔案",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "以文字方式匯入",
-        "PARSING_ERROR": "錯誤：解析失敗，不是有效的播放清單："
+        "PARSING_ERROR": "錯誤：解析失敗，不是有效的播放清單：",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "貼上 AMZ IPTV 連結或代碼",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… 或 32 位代碼",
+            "INPUT_HINT": "支援完整分享連結或僅雜湊",
+            "NAME_LABEL": "名稱(可選)",
+            "ADD": "匯入",
+            "RESOLVING": "解析中",
+            "ERROR_INVALID_INPUT": "這看起來不像 AMZ IPTV 連結或代碼。",
+            "ERROR_NOT_FOUND": "連結不存在或已過期。",
+            "ERROR_EXPIRED": "該訂閱已不再有效。",
+            "ERROR_RATE_LIMITED": "嘗試次數過多,請稍後再試。",
+            "ERROR_AUTH": "AMZ IPTV 授權失敗,請重試。",
+            "ERROR_NETWORK": "連線 AMZ IPTV 失敗,請檢查網路後重試。",
+            "ERROR_PORTAL_AUTH": "入口網站未接受解析出的帳戶,請稍後再試。"
+        }
     },
     "SETTINGS": {
         "TITLE": "設定",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "已啟用中繼資料增強,但未設定 TMDB API 金鑰——將不會載入任何內容。請在下方輸入你的個人金鑰(個人使用免費)。"
     },
     "THEMES": {
         "DARK_THEME": "深色",

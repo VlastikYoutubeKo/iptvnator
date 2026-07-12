@@ -228,7 +228,7 @@ This is an Nx monorepo with the following structure:
 - **libs/** - Shared libraries:
     - **epg/data-access** - EPG services, runtime bridge, program normalization
     - **m3u-state** - NgRx state management for M3U playlists
-    - **playlist/import/feature** - Playlist import flows (file/URL/text upload, Xtream and Stalker import dialogs)
+    - **playlist/import/feature** - Playlist import flows (file/URL/text upload, Xtream and Stalker import dialogs, AMZ IPTV hash import — resolves iptv.tutoje.cz share hashes into Xtream/Stalker accounts; Electron routes the API call through the main process via `AMZ_IMPORT_RESOLVE` IPC to avoid CORS, PWA needs the deployed origin allow-listed server-side)
     - **playlist/m3u/feature-player** - M3U video player page and `/workspace/playlists/:id` routes
     - **playlist/shared/{ui,util}** - Shared playlist UI and utilities
     - **portal/xtream/{data-access,feature}** - XtreamStore, services, data sources; routed Xtream components

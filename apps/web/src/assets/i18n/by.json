@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker партал",
             "METHOD_STALKER_SUB": "MAC-адрас і URL партала",
             "METHOD_TEXT_LABEL": "Тэкст M3U",
-            "METHOD_TEXT_SUB": "Для разавых спісаў або калі ў вас ёсць толькі тэкст"
+            "METHOD_TEXT_SUB": "Для разавых спісаў або калі ў вас ёсць толькі тэкст",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Устаўце хэш або спасылку з iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Перацягніце файл у гэтую вобласць",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Імпартавана як тэкст",
-        "PARSING_ERROR": "Памылка парсінгу, несапраўдны плэйліст:"
+        "PARSING_ERROR": "Памылка парсінгу, несапраўдны плэйліст:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "Устаўце спасылку або код AMZ IPTV",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… або 32-значны код",
+            "INPUT_HINT": "Падыходзіць поўная спасылка або толькі хэш",
+            "NAME_LABEL": "Назва (неабавязкова)",
+            "ADD": "Імпартаваць",
+            "RESOLVING": "Апрацоўка",
+            "ERROR_INVALID_INPUT": "Гэта не падобна на спасылку або код AMZ IPTV.",
+            "ERROR_NOT_FOUND": "Спасылка не знойдзена або пратэрмінаваная.",
+            "ERROR_EXPIRED": "Гэтая падпіска больш не актыўная.",
+            "ERROR_RATE_LIMITED": "Занадта шмат спроб, паспрабуйце крыху пазней.",
+            "ERROR_AUTH": "Не ўдалося аўтарызавацца ў AMZ IPTV. Паспрабуйце яшчэ раз.",
+            "ERROR_NETWORK": "Не ўдалося падключыцца да AMZ IPTV. Праверце сетку і паспрабуйце зноў.",
+            "ERROR_PORTAL_AUTH": "Партал не прыняў атрыманы акаўнт. Паспрабуйце пазней."
+        }
     },
     "SETTINGS": {
         "TITLE": "Налады",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "Узбагачэнне метаданых уключана, але ключ API TMDB не зададзены — нічога не загрузіцца. Увядзіце ніжэй свой асабісты ключ (бясплатна для асабістага выкарыстання)."
     },
     "THEMES": {
         "DARK_THEME": "Цёмная",

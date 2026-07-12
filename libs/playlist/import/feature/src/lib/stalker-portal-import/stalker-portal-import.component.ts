@@ -19,6 +19,10 @@ import {
 } from '@iptvnator/portal/stalker/data-access';
 import { Playlist } from '@iptvnator/shared/interfaces';
 import { v4 as uuid } from 'uuid';
+import {
+    isFullStalkerPortalUrl,
+    transformStalkerPortalUrl,
+} from './stalker-portal-url.util';
 
 @Component({
     imports: [
@@ -200,7 +204,7 @@ export class StalkerPortalImportComponent {
      * Pattern: example.com/stalker_portal/c or example.com/stalker_portal/...
      */
     isFullStalkerPortalUrl(url: string): boolean {
-        return url.includes('/stalker_portal');
+        return isFullStalkerPortalUrl(url);
     }
 
     private toPlaylistIdentityFields(identity: StalkerPortalIdentity): {
@@ -230,47 +234,10 @@ export class StalkerPortalImportComponent {
     }
 
     /**
-     * Transforms the portal URL to the correct API endpoint
-     * - Simple URL (example.com/c) -> example.com/portal.php
-     * - Full stalker portal (example.com/stalker_portal/c) -> example.com/stalker_portal/server/load.php
+     * Transforms the portal URL to the correct API endpoint. Delegates to the
+     * shared util used by both the manual and AMZ import paths.
      */
     transformPortalUrl(url: string): string {
-        // Remove trailing slashes
-        url = url.replace(/\/+$/, '');
-
-        // Case 1: Simple URL ending with /c -> convert to /portal.php
-        if (url.endsWith('/c')) {
-            // Check if it's a full stalker portal URL
-            if (url.includes('/stalker_portal')) {
-                // example.com/stalker_portal/c -> example.com/stalker_portal/server/load.php
-                return url.replace(
-                    /\/stalker_portal\/c$/,
-                    '/stalker_portal/server/load.php'
-                );
-            }
-            // Simple URL: example.com/c -> example.com/portal.php
-            return url.replace(/\/c$/, '/portal.php');
-        }
-
-        // Case 2: Full stalker portal URL without /c at the end
-        if (
-            url.includes('/stalker_portal') &&
-            !url.includes('/server/load.php')
-        ) {
-            // example.com/stalker_portal -> example.com/stalker_portal/server/load.php
-            if (url.endsWith('/stalker_portal')) {
-                return url + '/server/load.php';
-            }
-            // If it has other path segments after /stalker_portal, append server/load.php
-            if (!url.endsWith('/load.php')) {
-                return url.replace(
-                    /\/stalker_portal(\/.*)?$/,
-                    '/stalker_portal/server/load.php'
-                );
-            }
-        }
-
-        // Otherwise keep the provided url
-        return url;
+        return transformStalkerPortalUrl(url);
     }
 }

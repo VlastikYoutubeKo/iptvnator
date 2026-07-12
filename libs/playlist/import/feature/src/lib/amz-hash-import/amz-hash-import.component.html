@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+    <mat-form-field class="w-full" subscriptSizing="dynamic">
+        <mat-label for="amz-input">{{
+            'HOME.AMZ_IMPORT.INPUT_LABEL' | translate
+        }}</mat-label>
+        <input
+            matInput
+            type="text"
+            id="amz-input"
+            formControlName="input"
+            [placeholder]="'HOME.AMZ_IMPORT.INPUT_PLACEHOLDER' | translate"
+        />
+        <mat-hint>{{ 'HOME.AMZ_IMPORT.INPUT_HINT' | translate }}</mat-hint>
+        <mat-error>{{
+            'HOME.AMZ_IMPORT.ERROR_INVALID_INPUT' | translate
+        }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label for="amz-title">{{
+            'HOME.AMZ_IMPORT.NAME_LABEL' | translate
+        }}</mat-label>
+        <input matInput type="text" id="amz-title" formControlName="title" />
+    </mat-form-field>
+
+    @if (errorKey(); as key) {
+        <div class="amz-error" role="alert">
+            <mat-icon>error_outline</mat-icon>
+            <span>
+                {{ key | translate }}
+                @if (errorDetail(); as detail) {
+                    ({{ detail }})
+                }
+            </span>
+        </div>
+    }
+</form>

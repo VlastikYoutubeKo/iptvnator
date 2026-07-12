@@ -4,6 +4,7 @@ import { autoUpdater } from 'electron-updater';
 import fixPath from 'fix-path';
 import App from './app/app';
 import { initDatabase } from './app/database/connection';
+import AmzImportEvents from './app/events/amz-import.events';
 import DatabaseEvents from './app/events/database.events';
 import {
     resetStaleDownloads,
@@ -121,6 +122,7 @@ export default class Main {
         SettingsEvents.bootstrapSettingsEvents();
         StalkerEvents.bootstrapStalkerEvents();
         XtreamEvents.bootstrapXtreamEvents();
+        AmzImportEvents.bootstrapAmzImportEvents();
         DatabaseEvents.bootstrapDatabaseEvents();
         EpgEvents.bootstrapEpgEvents();
         RemoteControlEvents.bootstrapRemoteControlEvents();

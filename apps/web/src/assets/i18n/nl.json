@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker-portaal",
             "METHOD_STALKER_SUB": "MAC-adres en portal-URL",
             "METHOD_TEXT_LABEL": "Ruwe m3u-tekst",
-            "METHOD_TEXT_SUB": "Voor eenmalige lijsten of als je alleen tekst hebt"
+            "METHOD_TEXT_SUB": "Voor eenmalige lijsten of als je alleen tekst hebt",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Plak een share-hash of link van iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Sleep bestanden hierheen",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Geïmporteerd als tekst",
-        "PARSING_ERROR": "Fout: parsing mislukt, geen geldige afspeellijst:"
+        "PARSING_ERROR": "Fout: parsing mislukt, geen geldige afspeellijst:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "Plak de AMZ IPTV-link of code",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… of de 32-tekens code",
+            "INPUT_HINT": "Werkt met de volledige URL of alleen de hash",
+            "NAME_LABEL": "Naam (optioneel)",
+            "ADD": "Importeren",
+            "RESOLVING": "Bezig met ophalen",
+            "ERROR_INVALID_INPUT": "Dit lijkt niet op een AMZ IPTV-link of code.",
+            "ERROR_NOT_FOUND": "Link niet gevonden of verlopen.",
+            "ERROR_EXPIRED": "Dit abonnement is niet meer actief.",
+            "ERROR_RATE_LIMITED": "Te veel pogingen, probeer het zo weer.",
+            "ERROR_AUTH": "Autorisatie bij AMZ IPTV mislukt. Probeer opnieuw.",
+            "ERROR_NETWORK": "Verbinding met AMZ IPTV mislukt. Controleer je netwerk en probeer opnieuw.",
+            "ERROR_PORTAL_AUTH": "De portal accepteerde het opgehaalde account niet. Probeer later opnieuw."
+        }
     },
     "SETTINGS": {
         "TITLE": "Instellingen",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "Metadataverrijking staat aan maar er is geen TMDB API-sleutel ingesteld — er wordt niets geladen. Vul hieronder je persoonlijke sleutel in (gratis voor persoonlijk gebruik)."
     },
     "THEMES": {
         "DARK_THEME": "Donker",

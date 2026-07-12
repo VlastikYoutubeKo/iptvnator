@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker-Portal",
             "METHOD_STALKER_SUB": "MAC-Adresse und Portal-URL",
             "METHOD_TEXT_LABEL": "M3U-Text",
-            "METHOD_TEXT_SUB": "Für einmalige Listen oder wenn Sie nur Text haben"
+            "METHOD_TEXT_SUB": "Für einmalige Listen oder wenn Sie nur Text haben",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Share-Hash oder Link von iptv.tutoje.cz einfügen"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Ziehen Sie Dateien per Drag & Drop",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Als Text importiert",
-        "PARSING_ERROR": "Fehler: Parsen fehlgeschlagen, keine gültige Playlist:"
+        "PARSING_ERROR": "Fehler: Parsen fehlgeschlagen, keine gültige Playlist:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "AMZ-IPTV-Link oder Code einfügen",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… oder der 32-stellige Code",
+            "INPUT_HINT": "Funktioniert mit der vollständigen URL oder nur dem Hash",
+            "NAME_LABEL": "Name (optional)",
+            "ADD": "Importieren",
+            "RESOLVING": "Wird aufgelöst",
+            "ERROR_INVALID_INPUT": "Das sieht nicht wie ein AMZ-IPTV-Link oder -Code aus.",
+            "ERROR_NOT_FOUND": "Link nicht gefunden oder abgelaufen.",
+            "ERROR_EXPIRED": "Dieses Abonnement ist nicht mehr aktiv.",
+            "ERROR_RATE_LIMITED": "Zu viele Versuche, bitte später erneut versuchen.",
+            "ERROR_AUTH": "Autorisierung bei AMZ IPTV fehlgeschlagen. Bitte erneut versuchen.",
+            "ERROR_NETWORK": "Verbindung zu AMZ IPTV fehlgeschlagen. Netzwerk prüfen und erneut versuchen.",
+            "ERROR_PORTAL_AUTH": "Das Portal hat das aufgelöste Konto nicht akzeptiert. Später erneut versuchen."
+        }
     },
     "SETTINGS": {
         "TITLE": "Einstellungen",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "Metadaten-Anreicherung ist aktiviert, aber kein TMDB-API-Schlüssel gesetzt — es wird nichts geladen. Eigenen API-Schlüssel unten eintragen (für private Nutzung kostenlos)."
     },
     "THEMES": {
         "DARK_THEME": "Dunkel",

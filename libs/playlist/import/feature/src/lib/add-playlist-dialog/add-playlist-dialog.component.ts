@@ -20,6 +20,7 @@ import { PlaylistType } from '@iptvnator/playlist/shared/ui';
 import { PlaylistActions } from '@iptvnator/m3u-state';
 import { DataService } from '@iptvnator/services';
 import { PLAYLIST_PARSE_BY_URL } from '@iptvnator/shared/interfaces';
+import { AmzHashImportComponent } from '../amz-hash-import/amz-hash-import.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { StalkerPortalImportComponent } from '../stalker-portal-import/stalker-portal-import.component';
 import { TextImportComponent } from '../text-import/text-import.component';
@@ -40,6 +41,7 @@ export interface PlaylistMethodOption {
 
 @Component({
     imports: [
+        AmzHashImportComponent,
         FileUploadComponent,
         MatButtonModule,
         MatDialogModule,
@@ -70,6 +72,7 @@ export class AddPlaylistDialogComponent {
     readonly textImport = viewChild(TextImportComponent);
     readonly xtreamImport = viewChild(XtreamCodeImportComponent);
     readonly stalkerImport = viewChild(StalkerPortalImportComponent);
+    readonly amzImport = viewChild(AmzHashImportComponent);
 
     readonly method = signal<PlaylistType>('url');
 
@@ -109,6 +112,12 @@ export class AddPlaylistDialogComponent {
             icon: 'subject',
             labelKey: 'HOME.ADD_PLAYLIST.METHOD_TEXT_LABEL',
             subKey: 'HOME.ADD_PLAYLIST.METHOD_TEXT_SUB',
+        },
+        {
+            value: 'amz',
+            icon: 'tag',
+            labelKey: 'HOME.ADD_PLAYLIST.METHOD_AMZ_LABEL',
+            subKey: 'HOME.ADD_PLAYLIST.METHOD_AMZ_SUB',
         },
     ];
 
@@ -196,6 +205,9 @@ export class AddPlaylistDialogComponent {
             case 'stalker':
                 this.stalkerImport()?.clearForm();
                 break;
+            case 'amz':
+                this.amzImport()?.clearForm();
+                break;
         }
     }
 
@@ -210,6 +222,8 @@ export class AddPlaylistDialogComponent {
                 return !!this.xtreamImport()?.isTestingConnection;
             case 'stalker':
                 return !!this.stalkerImport()?.isLoading();
+            case 'amz':
+                return !!this.amzImport()?.isLoading();
             default:
                 return false;
         }

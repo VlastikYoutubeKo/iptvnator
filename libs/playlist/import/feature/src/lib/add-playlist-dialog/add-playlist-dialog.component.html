@@ -57,6 +57,9 @@
                 @case ('xtream') {
                     <app-xtream-code-import (addClicked)="closeDialog()" />
                 }
+                @case ('amz') {
+                    <app-amz-hash-import (addClicked)="closeDialog()" />
+                }
             }
         </div>
     </mat-dialog-content>
@@ -141,6 +144,28 @@
                     >
                         {{ 'HOME.XTREAM_PLAYLIST.ADD' | translate }}
                     </button>
+                }
+                @case ('amz') {
+                    @if (amzImport()?.isLoading()) {
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            type="button"
+                            disabled
+                        >
+                            {{ 'HOME.AMZ_IMPORT.RESOLVING' | translate }}...
+                        </button>
+                    } @else {
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            type="button"
+                            [disabled]="!amzImport()?.form?.valid"
+                            (click)="amzImport()?.addPlaylist()"
+                        >
+                            {{ 'HOME.AMZ_IMPORT.ADD' | translate }}
+                        </button>
+                    }
                 }
                 @case ('stalker') {
                     @if (stalkerImport()?.isLoading()) {

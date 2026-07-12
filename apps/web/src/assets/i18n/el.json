@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Πύλη Stalker",
             "METHOD_STALKER_SUB": "MAC address και URL πύλης",
             "METHOD_TEXT_LABEL": "Ακατέργαστο κείμενο m3u",
-            "METHOD_TEXT_SUB": "Για λίστες μίας χρήσης ή όταν έχετε μόνο κείμενο"
+            "METHOD_TEXT_SUB": "Για λίστες μίας χρήσης ή όταν έχετε μόνο κείμενο",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "Επικολλήστε hash ή σύνδεσμο κοινοποίησης από το iptv.tutoje.cz"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "Σύρετε και αποθέστε αρχεία εδώ",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "Εισήχθη ως κείμενο",
-        "PARSING_ERROR": "Σφάλμα: Η ανάλυση απέτυχε, δεν είναι έγκυρη λίστα αναπαραγωγής:"
+        "PARSING_ERROR": "Σφάλμα: Η ανάλυση απέτυχε, δεν είναι έγκυρη λίστα αναπαραγωγής:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "Επικολλήστε τον σύνδεσμο ή τον κωδικό AMZ IPTV",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… ή ο 32ψήφιος κωδικός",
+            "INPUT_HINT": "Δέχεται το πλήρες URL ή μόνο το hash",
+            "NAME_LABEL": "Όνομα (προαιρετικό)",
+            "ADD": "Εισαγωγή",
+            "RESOLVING": "Επίλυση",
+            "ERROR_INVALID_INPUT": "Αυτό δεν μοιάζει με σύνδεσμο ή κωδικό AMZ IPTV.",
+            "ERROR_NOT_FOUND": "Ο σύνδεσμος δεν βρέθηκε ή έληξε.",
+            "ERROR_EXPIRED": "Αυτή η συνδρομή δεν είναι πλέον ενεργή.",
+            "ERROR_RATE_LIMITED": "Πάρα πολλές προσπάθειες, δοκιμάστε ξανά σε λίγο.",
+            "ERROR_AUTH": "Αποτυχία εξουσιοδότησης με το AMZ IPTV. Δοκιμάστε ξανά.",
+            "ERROR_NETWORK": "Αποτυχία σύνδεσης με το AMZ IPTV. Ελέγξτε το δίκτυο και δοκιμάστε ξανά.",
+            "ERROR_PORTAL_AUTH": "Η πύλη δεν αποδέχθηκε τον λογαριασμό. Δοκιμάστε αργότερα."
+        }
     },
     "SETTINGS": {
         "TITLE": "Ρυθμίσεις",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "Ο εμπλουτισμός μεταδεδομένων είναι ενεργός αλλά δεν έχει οριστεί κλειδί API TMDB — δεν θα φορτωθεί τίποτα. Εισαγάγετε το προσωπικό σας κλειδί παρακάτω (δωρεάν για προσωπική χρήση)."
     },
     "THEMES": {
         "DARK_THEME": "Σκούρο",

@@ -140,7 +140,9 @@
             "METHOD_STALKER_LABEL": "Stalker 포털",
             "METHOD_STALKER_SUB": "MAC 주소와 포털 URL",
             "METHOD_TEXT_LABEL": "원본 m3u 텍스트",
-            "METHOD_TEXT_SUB": "일회성 목록이나 텍스트만 있을 때 사용하세요"
+            "METHOD_TEXT_SUB": "일회성 목록이나 텍스트만 있을 때 사용하세요",
+            "METHOD_AMZ_LABEL": "AMZ IPTV",
+            "METHOD_AMZ_SUB": "iptv.tutoje.cz의 공유 해시 또는 링크 붙여넣기"
         },
         "FILE_UPLOAD": {
             "DRAG_DROP": "파일을 드래그 앤 드롭",
@@ -208,7 +210,22 @@
             "STALKER": "Stalker"
         },
         "IMPORTED_AS_TEXT": "텍스트로 가져옴",
-        "PARSING_ERROR": "오류: 파싱에 실패했습니다. 유효한 재생목록이 아닙니다:"
+        "PARSING_ERROR": "오류: 파싱에 실패했습니다. 유효한 재생목록이 아닙니다:",
+        "AMZ_IMPORT": {
+            "INPUT_LABEL": "AMZ IPTV 링크 또는 코드 붙여넣기",
+            "INPUT_PLACEHOLDER": "https://iptv.tutoje.cz/?data=… 또는 32자리 코드",
+            "INPUT_HINT": "전체 URL 또는 해시만으로도 가능합니다",
+            "NAME_LABEL": "이름(선택)",
+            "ADD": "가져오기",
+            "RESOLVING": "확인 중",
+            "ERROR_INVALID_INPUT": "AMZ IPTV 링크나 코드가 아닌 것 같습니다.",
+            "ERROR_NOT_FOUND": "링크를 찾을 수 없거나 만료되었습니다.",
+            "ERROR_EXPIRED": "이 구독은 더 이상 활성 상태가 아닙니다.",
+            "ERROR_RATE_LIMITED": "시도가 너무 많습니다. 잠시 후 다시 시도하세요.",
+            "ERROR_AUTH": "AMZ IPTV 인증에 실패했습니다. 다시 시도하세요.",
+            "ERROR_NETWORK": "AMZ IPTV 연결에 실패했습니다. 네트워크를 확인하고 다시 시도하세요.",
+            "ERROR_PORTAL_AUTH": "포털이 가져온 계정을 수락하지 않았습니다. 나중에 다시 시도하세요."
+        }
     },
     "SETTINGS": {
         "TITLE": "설정",
@@ -428,7 +445,8 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "TMDB_KEY_MISSING": "메타데이터 보강이 켜져 있지만 TMDB API 키가 설정되지 않아 아무것도 로드되지 않습니다. 아래에 개인 API 키를 입력하세요(개인 용도는 무료)."
     },
     "THEMES": {
         "DARK_THEME": "어둡게",
