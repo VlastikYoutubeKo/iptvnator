@@ -104,10 +104,10 @@ export function applyBrowserCredentialsPatch() {
 
         if (async !== undefined) {
             if (user !== undefined && password !== undefined) {
-                return originalOpen.call(this, method, urlStr, async, user, password);
+                return (originalOpen as any).call(this, method, urlStr, async, user, password);
             }
-            return originalOpen.call(this, method, urlStr, async);
+            return (originalOpen as any).call(this, method, urlStr, async);
         }
-        return originalOpen.call(this, method, urlStr);
+        return (originalOpen as any).call(this, method, urlStr);
     };
 }
