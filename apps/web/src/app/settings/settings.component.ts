@@ -555,10 +555,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
      * settings UI
      */
     checkAppVersion(): void {
+        this.version = this.dataService.getAppVersion();
         this.settingsService
             .getAppVersion()
             .pipe(take(1))
-            .subscribe((version) => this.showVersionInformation(version));
+            .subscribe({
+                next: (version) => this.showVersionInformation(version),
+                error: (err) => {
+                    console.error('Failed to check for app updates', err);
+                    this.updateMessage = '';
+                },
+            });
     }
 
     /**

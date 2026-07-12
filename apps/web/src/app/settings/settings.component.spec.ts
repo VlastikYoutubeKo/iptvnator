@@ -55,7 +55,7 @@ import {
     selectIsEpgAvailable,
 } from '@iptvnator/m3u-state';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { from, of } from 'rxjs';
+import { from, of, throwError } from 'rxjs';
 import { ElectronServiceStub } from '../services/electron.service.stub';
 import { SettingsStore } from '../services/settings-store.service';
 import { SettingsService } from '../services/settings.service';
@@ -878,6 +878,22 @@ describe('SettingsComponent', () => {
             expect(component.updateMessage).toBe(
                 'New version available: 1.0.0'
             );
+        });
+
+        it('should show the installed version even when the update check fails', () => {
+            const settingsService = TestBed.inject(SettingsService);
+            (settingsService.getAppVersion as jest.Mock).mockReturnValue(
+                throwError(() => new Error('rate limited'))
+            );
+            jest.spyOn(electronService, 'getAppVersion').mockReturnValue(
+                currentVersion
+            );
+
+            component.version = '';
+            // checkAppVersion is stubbed in the outer beforeEach; exercise the real implementation
+            SettingsComponent.prototype.checkAppVersion.call(component);
+
+            expect(component.version).toBe(currentVersion);
         });
     });
 
