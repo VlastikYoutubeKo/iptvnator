@@ -1,6 +1,6 @@
 {
     "name": "iptvnator",
-    "version": "0.22.0",
+    "version": "0.22.1-basicauth.1",
     "license": "MIT",
     "description": "IPTV player application.",
     "homepage": "https://github.com/4gray/iptvnator",
