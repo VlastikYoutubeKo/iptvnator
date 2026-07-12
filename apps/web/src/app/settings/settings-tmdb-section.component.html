@@ -28,6 +28,17 @@
             </div>
         </div>
 
+        @if (isKeyMissing) {
+            <div
+                class="tmdb-key-missing"
+                role="alert"
+                data-test-id="tmdb-key-missing"
+            >
+                <mat-icon>warning_amber</mat-icon>
+                <span>{{ 'SETTINGS.TMDB_KEY_MISSING' | translate }}</span>
+            </div>
+        }
+
         @if (form().value.tmdb?.enabled === true) {
             <div class="setting-item">
                 <div class="setting-item__meta">

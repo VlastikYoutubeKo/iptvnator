@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
-import { TmdbApiService } from '@iptvnator/services';
+import { DEFAULT_TMDB_API_KEY, TmdbApiService } from '@iptvnator/services';
 
 type TmdbKeyTestState = 'idle' | 'testing' | 'success' | 'error';
 
@@ -59,6 +59,19 @@ type TmdbKeyTestState = 'idle' | 'testing' | 'success' | 'error';
             .tmdb-key-test__result--error {
                 color: #f44336;
             }
+
+            .tmdb-key-missing {
+                align-items: center;
+                color: #ff9800;
+                display: flex;
+                font-size: 0.875rem;
+                gap: 8px;
+                margin: 4px 0 12px;
+
+                mat-icon {
+                    flex: none;
+                }
+            }
         `,
     ],
 })
@@ -72,6 +85,19 @@ export class SettingsTmdbSectionComponent {
 
     get enteredApiKey(): string {
         return (this.form().value.tmdb?.apiKey ?? '').trim();
+    }
+
+    /**
+     * True when enrichment is enabled but no key can serve it — no user key
+     * and no embedded build key. Without this warning the feature would just
+     * silently do nothing.
+     */
+    get isKeyMissing(): boolean {
+        return (
+            this.form().value.tmdb?.enabled === true &&
+            !this.enteredApiKey &&
+            !DEFAULT_TMDB_API_KEY
+        );
     }
 
     async testApiKey(): Promise<void> {
