@@ -1,8 +1,10 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { registerAppDateLocales } from './app/app-date-locales';
+import { applyBrowserCredentialsPatch } from './browser-credentials-patch';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
+applyBrowserCredentialsPatch();
 registerAppDateLocales();
 
 bootstrapApplication(AppComponent, appConfig)
