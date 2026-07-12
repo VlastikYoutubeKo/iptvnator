@@ -12,19 +12,18 @@ import {
     ViewChild,
 } from '@angular/core';
 import Hls, { type ErrorData, type ManifestParsedData } from 'hls.js';
-import mpegts from 'mpegts.js';
 import { DataService } from '@iptvnator/services';
 import { Channel, createDevLogger } from '@iptvnator/shared/interfaces';
 import {
     InlinePlaybackPlayer,
     PlaybackDiagnostic,
     classifyHlsPlaybackIssue,
-    classifyMpegTsPlaybackIssue,
     classifyNativePlaybackIssue,
     classifyUnsupportedHlsManifestCodecs,
     createPlaybackSourceMetadata,
     getPlaybackMediaExtensionFromUrl,
 } from '../playback-diagnostics/playback-diagnostics.util';
+import { MpegtsPlayerController } from './mpegts-player-controller';
 import { SeriesPlaybackNavigationControlsComponent } from '../portal-inline-player/series-playback-navigation-controls.component';
 import type { SeriesPlaybackNavigation } from '../portal-inline-player/series-playback-navigation';
 
@@ -63,8 +62,8 @@ export class HtmlVideoPlayerComponent implements OnInit, OnChanges, OnDestroy {
 
     /** HLS object */
     hls!: Hls;
-    /** mpegts.js player for raw MPEG-TS streams */
-    private mpegtsPlayer: mpegts.Player | null = null;
+    /** mpegts.js lifecycle for raw MPEG-TS streams */
+    private readonly mpegtsController = new MpegtsPlayerController();
 
     /** Captions/subtitles indicator */
     @Input() showCaptions!: boolean;
@@ -164,13 +163,7 @@ export class HtmlVideoPlayerComponent implements OnInit, OnChanges, OnDestroy {
      * @param channel given channel object
      */
     playChannel(channel: Channel): void {
-        if (this.mpegtsPlayer) {
-            this.mpegtsPlayer.pause();
-            this.mpegtsPlayer.unload();
-            this.mpegtsPlayer.detachMediaElement();
-            this.mpegtsPlayer.destroy();
-            this.mpegtsPlayer = null;
-        }
+        this.mpegtsController.stop();
         if (this.hls) this.hls.destroy();
         this.clearNativeVideoSources(this.videoPlayer.nativeElement);
         if (channel.url) {
@@ -191,37 +184,23 @@ export class HtmlVideoPlayerComponent implements OnInit, OnChanges, OnDestroy {
                     );
                 });
 
-            if ((extension === 'ts' || !extension) && mpegts.isSupported()) {
+            if (
+                (extension === 'ts' || !extension) &&
+                MpegtsPlayerController.isSupported()
+            ) {
                 debugHtmlPlayer(
                     'Using mpegts.js for TS stream:',
                     channel.name,
                     url
                 );
-                this.mpegtsPlayer = mpegts.createPlayer({
-                    type: 'mpegts',
-                    isLive: true,
-                    url: url,
+                this.mpegtsController.play({
+                    url,
+                    mediaElement: this.videoPlayer.nativeElement,
+                    createMetadata: () =>
+                        this.createSourceMetadata(url, 'video/mp2t'),
+                    onIssue: (issue) => this.playbackIssue.emit(issue),
+                    onAttached: () => this.handlePlayOperation(),
                 });
-                this.mpegtsPlayer.attachMediaElement(
-                    this.videoPlayer.nativeElement
-                );
-                this.mpegtsPlayer.on(
-                    mpegts.Events.ERROR,
-                    (type: string, details: string, info: unknown): void => {
-                        this.playbackIssue.emit(
-                            classifyMpegTsPlaybackIssue(
-                                {
-                                    type,
-                                    details,
-                                    info,
-                                },
-                                this.createSourceMetadata(url, 'video/mp2t')
-                            )
-                        );
-                    }
-                );
-                this.mpegtsPlayer.load();
-                this.handlePlayOperation();
             } else if (
                 extension !== 'mp4' &&
                 extension !== 'mpv' &&
@@ -397,13 +376,7 @@ export class HtmlVideoPlayerComponent implements OnInit, OnChanges, OnDestroy {
             'ended',
             this.handlePlaybackEnded
         );
-        if (this.mpegtsPlayer) {
-            this.mpegtsPlayer.pause();
-            this.mpegtsPlayer.unload();
-            this.mpegtsPlayer.detachMediaElement();
-            this.mpegtsPlayer.destroy();
-            this.mpegtsPlayer = null;
-        }
+        this.mpegtsController.stop();
         if (this.hls) {
             this.hls.destroy();
         }

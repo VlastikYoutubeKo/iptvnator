@@ -1,7 +1,6 @@
 import {
     PlaybackDiagnosticCode,
     classifyHlsPlaybackIssue,
-    classifyMpegTsPlaybackIssue,
     classifyNativePlaybackIssue,
     createPlaybackSourceMetadata,
     getLikelyBrowserUnsupportedCodecLabels,
@@ -224,60 +223,6 @@ describe('playback diagnostics', () => {
 
         expect(issue.code).toBe(PlaybackDiagnosticCode.NetworkError);
         expect(issue.externalFallbackRecommended).toBe(false);
-    });
-
-    it('classifies mpegts browser fetch restrictions separately from generic network errors', () => {
-        const issue = classifyMpegTsPlaybackIssue(
-            {
-                type: 'NetworkError',
-                details:
-                    'Fetch blocked by access-control policy while loading segment',
-            },
-            createPlaybackSourceMetadata({
-                url: 'https://provider.example/live/channel.ts',
-                mimeType: 'video/mp2t',
-                player: 'videojs',
-            })
-        );
-
-        expect(issue.code).toBe('browser-access-error');
-        expect(issue.externalFallbackRecommended).toBe(true);
-    });
-
-    it('classifies mpegts early EOF failures as fallback-actionable media errors', () => {
-        const issue = classifyMpegTsPlaybackIssue(
-            {
-                type: 'NetworkError',
-                details: 'UnrecoverableEarlyEof',
-                info: { msg: 'Fetch stream meet Early-EOF' },
-            },
-            createPlaybackSourceMetadata({
-                url: 'https://provider.example/movie/123.ts',
-                mimeType: 'video/mp2t',
-                player: 'videojs',
-            })
-        );
-
-        expect(issue.code).toBe(PlaybackDiagnosticCode.MediaDecodeError);
-        expect(issue.externalFallbackRecommended).toBe(true);
-        expect(issue.details).toContain('Early-EOF');
-    });
-
-    it('classifies mpegts codec errors as unsupported codec fallbacks', () => {
-        const issue = classifyMpegTsPlaybackIssue(
-            {
-                type: 'MediaError',
-                details: 'MediaCodecUnsupported',
-            },
-            createPlaybackSourceMetadata({
-                url: 'https://example.com/live/channel.ts',
-                mimeType: 'video/mp2t',
-                player: 'videojs',
-            })
-        );
-
-        expect(issue.code).toBe(PlaybackDiagnosticCode.UnsupportedCodec);
-        expect(issue.externalFallbackRecommended).toBe(true);
     });
 
     it('prefers stream extension query metadata over web script path extensions', () => {

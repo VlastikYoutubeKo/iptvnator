@@ -145,6 +145,23 @@ export function classifyHlsPlaybackIssue(
     });
 }
 
+/**
+ * Detects the Chromium QuotaExceededError raised by
+ * `MediaSource.addSourceBuffer` when detached MediaSources have not been
+ * released yet (e.g. rapid channel zapping). This is a transient resource
+ * limit, not a container/codec capability problem.
+ */
+export function isMpegTsSourceBufferQuotaError(
+    error: MpegTsPlaybackErrorInput
+): boolean {
+    const lowerDetails = normalizeErrorDetails(error).toLowerCase();
+    return (
+        lowerDetails.includes('limit of sourcebuffer objects') ||
+        (lowerDetails.includes('addsourcebuffer') &&
+            lowerDetails.includes('quota'))
+    );
+}
+
 export function classifyMpegTsPlaybackIssue(
     error: MpegTsPlaybackErrorInput,
     metadata: PlaybackSourceMetadata
@@ -152,6 +169,15 @@ export function classifyMpegTsPlaybackIssue(
     const details = normalizeErrorDetails(error);
     const lowerDetails = details.toLowerCase();
     const lowerType = (error.type ?? '').toLowerCase();
+
+    if (isMpegTsSourceBufferQuotaError(error)) {
+        return createDiagnostic({
+            code: DiagnosticCode.UnknownPlaybackError,
+            source: DiagnosticSource.MpegTs,
+            metadata,
+            details,
+        });
+    }
 
     if (isEarlyEofFailure(lowerDetails)) {
         return createDiagnostic({
