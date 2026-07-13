@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "メタデータ拡充が有効ですが、TMDB APIキーが未設定のため何も読み込まれません。下に個人のAPIキーを入力してください(個人利用は無料)。"
+        "TMDB_KEY_MISSING": "メタデータ拡充が有効ですが、TMDB APIキーが未設定のため何も読み込まれません。下に個人のAPIキーを入力してください(個人利用は無料)。",
+        "DESIGN_STYLE": "アプリデザイン",
+        "DESIGN_STYLE_DESCRIPTION": "クラシックな外観と新しい「Signál」デザイン(ディスプレイ書体、放送レッドのライブ表示)から選択します。",
+        "DESIGN_CLASSIC": "クラシック",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "ダーク",

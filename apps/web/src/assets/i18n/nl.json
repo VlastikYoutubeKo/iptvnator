@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Metadataverrijking staat aan maar er is geen TMDB API-sleutel ingesteld — er wordt niets geladen. Vul hieronder je persoonlijke sleutel in (gratis voor persoonlijk gebruik)."
+        "TMDB_KEY_MISSING": "Metadataverrijking staat aan maar er is geen TMDB API-sleutel ingesteld — er wordt niets geladen. Vul hieronder je persoonlijke sleutel in (gratis voor persoonlijk gebruik).",
+        "DESIGN_STYLE": "App-ontwerp",
+        "DESIGN_STYLE_DESCRIPTION": "Kies tussen de klassieke look en het nieuwe “Signál”-ontwerp (display-typografie, broadcast-rood live-indicator).",
+        "DESIGN_CLASSIC": "Klassiek",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Donker",

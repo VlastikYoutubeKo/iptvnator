@@ -712,6 +712,12 @@ Build configurations in `apps/web/project.json`:
 **Factory Pattern Implementation**:
 The factory pattern ensures a single codebase works in both environments without conditional checks scattered throughout the application. All environment-specific logic is encapsulated in the service implementations.
 
+### App Design Toggle ("Signál")
+
+- `Settings → General → App design` switches between the classic look and the opt-in "Signál" design layer (persisted as `designStyle` in `Settings`).
+- `SettingsService.changeDesignStyle()` toggles the `signal-design` class on `<body>`; applied on app start in `app.component.ts` and immediately on selection in settings.
+- The layer's styles live in `apps/web/src/_signal-theme.scss` — display typography (Barlow Condensed via `--app-display-font`) and the dark-theme live-red token. New Signal-layer styles must be scoped under `body.signal-design` so the classic look stays untouched.
+
 ### Testing Strategy
 
 - **Unit tests**: Jest with `jest-preset-angular` and `ng-mocks`

@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Meta veri zenginleştirme açık ancak TMDB API anahtarı ayarlanmamış — hiçbir şey yüklenmeyecek. Aşağıya kişisel anahtarınızı girin (kişisel kullanım için ücretsiz)."
+        "TMDB_KEY_MISSING": "Meta veri zenginleştirme açık ancak TMDB API anahtarı ayarlanmamış — hiçbir şey yüklenmeyecek. Aşağıya kişisel anahtarınızı girin (kişisel kullanım için ücretsiz).",
+        "DESIGN_STYLE": "Uygulama tasarımı",
+        "DESIGN_STYLE_DESCRIPTION": "Klasik görünüm ile yeni “Signál” tasarımı arasında seçim yapın (display tipografi, canlı yayın kırmızısı).",
+        "DESIGN_CLASSIC": "Klasik",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Koyu",

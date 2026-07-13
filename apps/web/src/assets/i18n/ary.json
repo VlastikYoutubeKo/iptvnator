@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "إثراء البيانات خدام ولكن ما كاينش مفتاح TMDB API — ما غيتحمل والو. دخل المفتاح ديالك لتحت (مجاني للاستعمال الشخصي)."
+        "TMDB_KEY_MISSING": "إثراء البيانات خدام ولكن ما كاينش مفتاح TMDB API — ما غيتحمل والو. دخل المفتاح ديالك لتحت (مجاني للاستعمال الشخصي).",
+        "DESIGN_STYLE": "تصميم التطبيق",
+        "DESIGN_STYLE_DESCRIPTION": "ختار بين الشكل الكلاسيكي والتصميم الجديد “Signál” (خط كبير للعناوين، أحمر البث للمباشر).",
+        "DESIGN_CLASSIC": "كلاسيكي",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "داكن",

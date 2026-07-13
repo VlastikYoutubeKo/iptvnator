@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Ο εμπλουτισμός μεταδεδομένων είναι ενεργός αλλά δεν έχει οριστεί κλειδί API TMDB — δεν θα φορτωθεί τίποτα. Εισαγάγετε το προσωπικό σας κλειδί παρακάτω (δωρεάν για προσωπική χρήση)."
+        "TMDB_KEY_MISSING": "Ο εμπλουτισμός μεταδεδομένων είναι ενεργός αλλά δεν έχει οριστεί κλειδί API TMDB — δεν θα φορτωθεί τίποτα. Εισαγάγετε το προσωπικό σας κλειδί παρακάτω (δωρεάν για προσωπική χρήση).",
+        "DESIGN_STYLE": "Σχεδίαση εφαρμογής",
+        "DESIGN_STYLE_DESCRIPTION": "Επιλέξτε ανάμεσα στην κλασική εμφάνιση και το νέο σχέδιο «Signál» (display τυπογραφία, κόκκινο μετάδοσης για το live).",
+        "DESIGN_CLASSIC": "Κλασικό",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Σκούρο",

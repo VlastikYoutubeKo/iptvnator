@@ -1,6 +1,9 @@
 import { Language } from './language.enum';
 import { StreamFormat } from './stream-format.enum';
 import { Theme } from './theme.enum';
+
+/** Design language of the app UI — 'signal' enables the redesign layer */
+export type AppDesignStyle = 'classic' | 'signal';
 import { TmdbSettings } from './tmdb.interface';
 
 /**
@@ -88,6 +91,8 @@ export interface Settings {
     /** Show the desktop footer bar for external playback status */
     showExternalPlaybackBar?: boolean;
     theme: Theme;
+    /** App-wide design language: classic look or the "Signál" redesign */
+    designStyle?: AppDesignStyle;
     mpvPlayerPath: string;
     /**
      * Extra MPV CLI arguments entered one argument per line. Applied only when

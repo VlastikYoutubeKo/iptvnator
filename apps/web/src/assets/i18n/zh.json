@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "已启用元数据增强,但未设置 TMDB API 密钥——将不会加载任何内容。请在下方输入你的个人密钥(个人使用免费)。"
+        "TMDB_KEY_MISSING": "已启用元数据增强,但未设置 TMDB API 密钥——将不会加载任何内容。请在下方输入你的个人密钥(个人使用免费)。",
+        "DESIGN_STYLE": "应用设计",
+        "DESIGN_STYLE_DESCRIPTION": "在经典外观和新的「Signál」设计(标题字体、广播红直播指示)之间选择。",
+        "DESIGN_CLASSIC": "经典",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "深色",

@@ -36,9 +36,11 @@
                 [activeSection]="activeSection()"
                 [languageEnum]="languageEnum"
                 [themeOptions]="themeOptions"
+                [designStyleOptions]="designStyleOptions"
                 [coverSizeOptions]="coverSizeOptions"
                 [startupBehaviorOptions]="startupBehaviorOptions"
                 (selectTheme)="selectTheme($event)"
+                (selectDesignStyle)="selectDesignStyle($event)"
                 (selectCoverSize)="selectCoverSize($event)"
             />
 

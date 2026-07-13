@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "إثراء البيانات الوصفية مفعّل لكن لم يتم تعيين مفتاح TMDB API — لن يتم تحميل أي شيء. أدخل مفتاحك الشخصي أدناه (مجاني للاستخدام الشخصي)."
+        "TMDB_KEY_MISSING": "إثراء البيانات الوصفية مفعّل لكن لم يتم تعيين مفتاح TMDB API — لن يتم تحميل أي شيء. أدخل مفتاحك الشخصي أدناه (مجاني للاستخدام الشخصي).",
+        "DESIGN_STYLE": "تصميم التطبيق",
+        "DESIGN_STYLE_DESCRIPTION": "اختر بين المظهر الكلاسيكي وتصميم “Signál” الجديد (خط عرض، أحمر البث لمؤشر المباشر).",
+        "DESIGN_CLASSIC": "كلاسيكي",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "داكن",

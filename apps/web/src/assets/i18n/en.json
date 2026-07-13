@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Metadata enrichment is enabled but no TMDB API key is set — nothing will load. Enter your personal API key below (free for personal use)."
+        "TMDB_KEY_MISSING": "Metadata enrichment is enabled but no TMDB API key is set — nothing will load. Enter your personal API key below (free for personal use).",
+        "DESIGN_STYLE": "App design",
+        "DESIGN_STYLE_DESCRIPTION": "Choose between the classic look and the new “Signál” design (display typography, broadcast-red live indicator).",
+        "DESIGN_CLASSIC": "Classic",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Dark",

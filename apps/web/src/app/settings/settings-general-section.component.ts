@@ -6,9 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
-import { CoverSize, Language, Theme } from '@iptvnator/shared/interfaces';
+import {
+    AppDesignStyle,
+    CoverSize,
+    Language,
+    Theme,
+} from '@iptvnator/shared/interfaces';
 import {
     CoverSizeOption,
+    DesignStyleOption,
     StartupBehaviorOption,
     ThemeOption,
 } from './settings.models';
@@ -33,9 +39,11 @@ export class SettingsGeneralSectionComponent {
     readonly activeSection = input.required<string>();
     readonly languageEnum = input.required<typeof Language>();
     readonly themeOptions = input.required<ThemeOption[]>();
+    readonly designStyleOptions = input.required<DesignStyleOption[]>();
     readonly coverSizeOptions = input.required<CoverSizeOption[]>();
     readonly startupBehaviorOptions = input.required<StartupBehaviorOption[]>();
 
     readonly selectTheme = output<Theme>();
+    readonly selectDesignStyle = output<AppDesignStyle>();
     readonly selectCoverSize = output<CoverSize>();
 }

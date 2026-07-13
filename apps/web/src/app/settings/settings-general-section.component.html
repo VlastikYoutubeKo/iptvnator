@@ -81,6 +81,42 @@
 
     <div class="setting-item setting-item--full-control">
         <div class="setting-item__meta">
+            <h4>{{ 'SETTINGS.DESIGN_STYLE' | translate }}</h4>
+            <p>{{ 'SETTINGS.DESIGN_STYLE_DESCRIPTION' | translate }}</p>
+        </div>
+        <div class="setting-item__control">
+            <div
+                class="theme-switcher"
+                role="radiogroup"
+                [attr.aria-label]="'SETTINGS.DESIGN_STYLE' | translate"
+                data-test-id="select-design-style"
+            >
+                @for (option of designStyleOptions(); track option.value) {
+                    <button
+                        type="button"
+                        class="theme-switcher__option"
+                        [class.theme-switcher__option--selected]="
+                            (form().value.designStyle ?? 'classic') ===
+                            option.value
+                        "
+                        [attr.aria-checked]="
+                            (form().value.designStyle ?? 'classic') ===
+                            option.value
+                        "
+                        [attr.data-test-id]="'design-' + option.value"
+                        role="radio"
+                        (click)="selectDesignStyle.emit(option.value)"
+                    >
+                        <mat-icon>{{ option.icon }}</mat-icon>
+                        <span>{{ option.labelKey | translate }}</span>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="setting-item setting-item--full-control">
+        <div class="setting-item__meta">
             <h4>{{ 'SETTINGS.COVER_SIZE' | translate }}</h4>
             <p>{{ 'SETTINGS.COVER_SIZE_DESCRIPTION' | translate }}</p>
         </div>

@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Узбагачэнне метаданых уключана, але ключ API TMDB не зададзены — нічога не загрузіцца. Увядзіце ніжэй свой асабісты ключ (бясплатна для асабістага выкарыстання)."
+        "TMDB_KEY_MISSING": "Узбагачэнне метаданых уключана, але ключ API TMDB не зададзены — нічога не загрузіцца. Увядзіце ніжэй свой асабісты ключ (бясплатна для асабістага выкарыстання).",
+        "DESIGN_STYLE": "Дызайн праграмы",
+        "DESIGN_STYLE_DESCRIPTION": "Абярыце паміж класічным выглядам і новым дызайнам «Signál» (дысплейная тыпаграфіка, эфірны чырвоны індыкатар).",
+        "DESIGN_CLASSIC": "Класічны",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Цёмная",

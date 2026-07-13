@@ -1,7 +1,8 @@
 // ─── „Signál" design layer ───────────────────────────────────────────────────
 // Layer 1 of the Signal redesign concept: display typography + live-red
-// retune. Token-level and heading-level only — no component layout changes.
-// Concept reference: docs/design/signal-concept (artifact mockup).
+// retune. Opt-in via Settings → General → App design; the `signal-design`
+// class is toggled on <body> by SettingsService.changeDesignStyle().
+// Token-level and heading-level only — no component layout changes.
 
 html {
     // Condensed grotesque as the display face — a nod to printed TV listings;
@@ -13,24 +14,26 @@ html {
 // Display face on primary content headings. Selectors are stable public
 // class names of the dashboard hero/rails, settings groups, and the
 // add-playlist dialog. Component styles keep their own sizes/colors.
-.hero__title,
-.rail__title,
-.settings-group__header-text h3,
-.apd-title {
-    font-family: var(--app-display-font);
-    font-weight: 600;
-}
+body.signal-design {
+    .hero__title,
+    .rail__title,
+    .settings-group__header-text h3,
+    .apd-title {
+        font-family: var(--app-display-font);
+        font-weight: 600;
+    }
 
-// Section-style titles read as broadcast rubrics: uppercase, slight tracking.
-.rail__title,
-.settings-group__header-text h3 {
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    // Section-style titles read as broadcast rubrics: uppercase, tracking.
+    .rail__title,
+    .settings-group__header-text h3 {
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
 }
 
 // Live/on-air indicator: one saturated broadcast red reserved exclusively
-// for "now airing" signals (dot, now-line, timeshift). The previous dark
-// value (#ff8f8f) read as washed pink and blended into the accent family.
-html .dark-theme {
+// for "now airing" signals (dot, now-line, timeshift). The classic dark
+// value (#ff8f8f) reads as washed pink and blends into the accent family.
+body.signal-design.dark-theme {
     --app-live-color: #ff4f43;
 }

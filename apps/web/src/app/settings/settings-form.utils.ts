@@ -5,6 +5,7 @@ import {
     Validators,
 } from '@angular/forms';
 import {
+    AppDesignStyle,
     CoverSize,
     DEFAULT_DASHBOARD_RAILS_SETTINGS,
     DEFAULT_TMDB_SETTINGS,
@@ -55,6 +56,7 @@ export function createSettingsForm(
         startupBehavior: StartupBehavior.FirstView,
         showExternalPlaybackBar: true,
         theme: Theme.SystemTheme,
+        designStyle: 'classic' as AppDesignStyle,
         mpvPlayerPath: '',
         mpvPlayerArguments: '',
         mpvReuseInstance: false,
@@ -122,6 +124,7 @@ export function createSettingsFromFormValue(
         startupBehavior: value.startupBehavior ?? StartupBehavior.FirstView,
         showExternalPlaybackBar: value.showExternalPlaybackBar ?? true,
         theme: value.theme ?? Theme.SystemTheme,
+        designStyle: value.designStyle ?? 'classic',
         mpvPlayerPath: normalizeExternalPlayerPath(value.mpvPlayerPath),
         mpvPlayerArguments: normalizeExternalPlayerArguments(
             value.mpvPlayerArguments

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { catchError, map, Observable } from 'rxjs';
-import { STORE_KEY, Theme } from '@iptvnator/shared/interfaces';
+import { AppDesignStyle, STORE_KEY, Theme } from '@iptvnator/shared/interfaces';
 
 const PRERELEASE_KEYWORDS = [
     'beta',
@@ -105,6 +105,14 @@ export class SettingsService {
         }
 
         document.body.classList.remove('dark-theme');
+    }
+
+    /**
+     * Switches the app design language. 'signal' enables the redesign layer
+     * (scoped in _signal-theme.scss); anything else restores the classic look.
+     */
+    changeDesignStyle(style?: AppDesignStyle): void {
+        document.body.classList.toggle('signal-design', style === 'signal');
     }
 
     private startSystemThemeSync(): void {

@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "L'arricchimento dei metadati è attivo ma non è impostata alcuna chiave API TMDB — non verrà caricato nulla. Inserisci la tua chiave personale qui sotto (gratuita per uso personale)."
+        "TMDB_KEY_MISSING": "L'arricchimento dei metadati è attivo ma non è impostata alcuna chiave API TMDB — non verrà caricato nulla. Inserisci la tua chiave personale qui sotto (gratuita per uso personale).",
+        "DESIGN_STYLE": "Design dell’app",
+        "DESIGN_STYLE_DESCRIPTION": "Scegli tra l’aspetto classico e il nuovo design «Signál» (tipografia display, rosso broadcast per la diretta).",
+        "DESIGN_CLASSIC": "Classico",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Scuro",

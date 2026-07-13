@@ -160,6 +160,10 @@ export class AppComponent implements OnInit {
                     } else {
                         this.detectDarkMode();
                     }
+
+                    this.settingsService.changeDesignStyle(
+                        settings.designStyle
+                    );
                 } else {
                     this.detectDarkMode();
                 }

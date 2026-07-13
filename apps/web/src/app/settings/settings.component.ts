@@ -35,6 +35,7 @@ import {
 import { take } from 'rxjs';
 import { DataService, RuntimeCapabilitiesService } from '@iptvnator/services';
 import {
+    AppDesignStyle,
     EmbeddedMpvSupport,
     CoverSize,
     ELECTRON_BRIDGE_APP_UPDATE_STATUSES,
@@ -73,6 +74,7 @@ import {
     SETTINGS_EPG_VIEW_MODE_OPTIONS,
     SETTINGS_OS_PLAYER_OPTIONS,
     SETTINGS_STARTUP_BEHAVIOR_OPTIONS,
+    SETTINGS_DESIGN_STYLE_OPTIONS,
     SETTINGS_THEME_OPTIONS,
 } from './settings-options';
 import { SettingsPlaybackSectionComponent } from './settings-playback-section.component';
@@ -205,6 +207,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     readonly playlists = this.store.selectSignal(selectAllPlaylistsMeta);
 
     readonly themeOptions = SETTINGS_THEME_OPTIONS;
+    readonly designStyleOptions = SETTINGS_DESIGN_STYLE_OPTIONS;
     readonly coverSizeOptions = SETTINGS_COVER_SIZE_OPTIONS;
     readonly startupBehaviorOptions = SETTINGS_STARTUP_BEHAVIOR_OPTIONS;
     readonly epgViewModeOptions = SETTINGS_EPG_VIEW_MODE_OPTIONS;
@@ -501,6 +504,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.settingsService.changeTheme(theme);
     }
 
+    selectDesignStyle(designStyle: AppDesignStyle): void {
+        if (this.settingsForm.value.designStyle === designStyle) {
+            return;
+        }
+
+        this.settingsForm.patchValue({ designStyle });
+        this.settingsForm.get('designStyle')?.markAsDirty();
+        this.settingsForm.markAsDirty();
+        this.settingsService.changeDesignStyle(designStyle);
+    }
+
     selectCoverSize(size: CoverSize): void {
         if (this.settingsForm.value.coverSize === size) {
             return;
@@ -660,6 +674,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
         );
         this.settingsService.changeTheme(
             this.settingsForm.value.theme ?? Theme.SystemTheme
+        );
+        this.settingsService.changeDesignStyle(
+            this.settingsForm.value.designStyle ?? 'classic'
         );
         this.settingsSnackbar.open(
             this.translate.instant('SETTINGS.SETTINGS_SAVED')

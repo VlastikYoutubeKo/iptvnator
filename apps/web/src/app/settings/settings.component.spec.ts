@@ -92,6 +92,7 @@ const DEFAULT_SETTINGS = {
     startupBehavior: StartupBehavior.FirstView,
     showExternalPlaybackBar: true,
     theme: Theme.SystemTheme,
+    designStyle: 'classic',
     mpvPlayerPath: '',
     mpvPlayerArguments: '',
     mpvReuseInstance: false,
@@ -152,6 +153,7 @@ class MockSettingsStore {
 class MockSettingsService {
     getAppVersion = jest.fn().mockReturnValue(from(Promise.resolve('1.0.0')));
     changeTheme = jest.fn();
+    changeDesignStyle = jest.fn();
     isVersionOutdated = jest.fn().mockImplementation(
         (currentVersion: string, latestVersion: string) =>
             currentVersion.localeCompare(latestVersion, undefined, {

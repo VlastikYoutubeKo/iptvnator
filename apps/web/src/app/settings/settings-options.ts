@@ -7,12 +7,26 @@ import {
 } from '@iptvnator/shared/interfaces';
 import {
     CoverSizeOption,
+    DesignStyleOption,
     EpgViewModeOption,
     SettingsPlayerOption,
     SettingsSection,
     StartupBehaviorOption,
     ThemeOption,
 } from './settings.models';
+
+export const SETTINGS_DESIGN_STYLE_OPTIONS: DesignStyleOption[] = [
+    {
+        value: 'classic',
+        icon: 'style',
+        labelKey: 'SETTINGS.DESIGN_CLASSIC',
+    },
+    {
+        value: 'signal',
+        icon: 'sensors',
+        labelKey: 'SETTINGS.DESIGN_SIGNAL',
+    },
+];
 
 export const SETTINGS_THEME_OPTIONS: ThemeOption[] = [
     {

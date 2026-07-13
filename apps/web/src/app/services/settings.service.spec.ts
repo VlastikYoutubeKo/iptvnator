@@ -120,5 +120,33 @@ describe('Service: Settings', () => {
                 expect(spyOnRemove).toHaveBeenCalledWith('dark-theme');
             }
         ));
+
+        it('should toggle the signal design class', inject(
+            [SettingsService],
+            (service: SettingsService) => {
+                const spyOnToggle = jest.spyOn(
+                    document.body.classList,
+                    'toggle'
+                );
+
+                service.changeDesignStyle('signal');
+                expect(spyOnToggle).toHaveBeenCalledWith(
+                    'signal-design',
+                    true
+                );
+
+                service.changeDesignStyle('classic');
+                expect(spyOnToggle).toHaveBeenCalledWith(
+                    'signal-design',
+                    false
+                );
+
+                service.changeDesignStyle(undefined);
+                expect(spyOnToggle).toHaveBeenLastCalledWith(
+                    'signal-design',
+                    false
+                );
+            }
+        ));
     });
 });

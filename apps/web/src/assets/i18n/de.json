@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "Metadaten-Anreicherung ist aktiviert, aber kein TMDB-API-Schlüssel gesetzt — es wird nichts geladen. Eigenen API-Schlüssel unten eintragen (für private Nutzung kostenlos)."
+        "TMDB_KEY_MISSING": "Metadaten-Anreicherung ist aktiviert, aber kein TMDB-API-Schlüssel gesetzt — es wird nichts geladen. Eigenen API-Schlüssel unten eintragen (für private Nutzung kostenlos).",
+        "DESIGN_STYLE": "App-Design",
+        "DESIGN_STYLE_DESCRIPTION": "Wähle zwischen dem klassischen Look und dem neuen „Signál“-Design (Display-Typografie, Sendungs-Rot als Live-Indikator).",
+        "DESIGN_CLASSIC": "Klassisch",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Dunkel",

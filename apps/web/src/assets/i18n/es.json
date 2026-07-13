@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "El enriquecimiento de metadatos está activado pero no hay clave de API de TMDB — no se cargará nada. Introduce tu clave personal abajo (gratuita para uso personal)."
+        "TMDB_KEY_MISSING": "El enriquecimiento de metadatos está activado pero no hay clave de API de TMDB — no se cargará nada. Introduce tu clave personal abajo (gratuita para uso personal).",
+        "DESIGN_STYLE": "Diseño de la aplicación",
+        "DESIGN_STYLE_DESCRIPTION": "Elige entre el aspecto clásico y el nuevo diseño «Signál» (tipografía display, rojo broadcast para el directo).",
+        "DESIGN_CLASSIC": "Clásico",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "Oscuro",

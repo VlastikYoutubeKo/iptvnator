@@ -1,4 +1,5 @@
 import {
+    AppDesignStyle,
     CoverSize,
     EpgViewMode,
     StartupBehavior,
@@ -20,6 +21,12 @@ export interface ObservedSettingsSection {
 
 export interface ThemeOption {
     value: Theme;
+    icon: string;
+    labelKey: string;
+}
+
+export interface DesignStyleOption {
+    value: AppDesignStyle;
     icon: string;
     labelKey: string;
 }

@@ -446,7 +446,11 @@
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
         "APP_UPDATE_RELEASE_NOTES": "What's new",
-        "TMDB_KEY_MISSING": "메타데이터 보강이 켜져 있지만 TMDB API 키가 설정되지 않아 아무것도 로드되지 않습니다. 아래에 개인 API 키를 입력하세요(개인 용도는 무료)."
+        "TMDB_KEY_MISSING": "메타데이터 보강이 켜져 있지만 TMDB API 키가 설정되지 않아 아무것도 로드되지 않습니다. 아래에 개인 API 키를 입력하세요(개인 용도는 무료).",
+        "DESIGN_STYLE": "앱 디자인",
+        "DESIGN_STYLE_DESCRIPTION": "클래식 모양과 새로운 “Signál” 디자인(디스플레이 서체, 방송 레드 라이브 표시) 중에서 선택하세요.",
+        "DESIGN_CLASSIC": "클래식",
+        "DESIGN_SIGNAL": "Signál"
     },
     "THEMES": {
         "DARK_THEME": "어둡게",
