@@ -1,5 +1,6 @@
 @use '../../../libs/ui/components/src/lib/resizable/resizable.scss';
 @use './settings-theme';
+@use './signal-theme';
 @use './cover-size';
 
 // ─── Tailwind CSS ─────────────────────────────────────────────────────────────
@@ -14,6 +15,8 @@
 @import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 // ─── Bundled Fonts ────────────────────────────────────────────────────────────
+@import '@fontsource/barlow-condensed/500.css';
+@import '@fontsource/barlow-condensed/600.css';
 @import '@fontsource/dm-sans/400.css';
 @import '@fontsource/dm-sans/500.css';
 @import '@fontsource/dm-sans/600.css';

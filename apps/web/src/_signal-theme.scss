@@ -1,0 +1,36 @@
+// ─── „Signál" design layer ───────────────────────────────────────────────────
+// Layer 1 of the Signal redesign concept: display typography + live-red
+// retune. Token-level and heading-level only — no component layout changes.
+// Concept reference: docs/design/signal-concept (artifact mockup).
+
+html {
+    // Condensed grotesque as the display face — a nod to printed TV listings;
+    // saves horizontal space in rail titles and EPG surfaces.
+    --app-display-font: 'Barlow Condensed', 'Arial Narrow', 'DM Sans',
+        sans-serif;
+}
+
+// Display face on primary content headings. Selectors are stable public
+// class names of the dashboard hero/rails, settings groups, and the
+// add-playlist dialog. Component styles keep their own sizes/colors.
+.hero__title,
+.rail__title,
+.settings-group__header-text h3,
+.apd-title {
+    font-family: var(--app-display-font);
+    font-weight: 600;
+}
+
+// Section-style titles read as broadcast rubrics: uppercase, slight tracking.
+.rail__title,
+.settings-group__header-text h3 {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+// Live/on-air indicator: one saturated broadcast red reserved exclusively
+// for "now airing" signals (dot, now-line, timeshift). The previous dark
+// value (#ff8f8f) read as washed pink and blended into the accent family.
+html .dark-theme {
+    --app-live-color: #ff4f43;
+}
