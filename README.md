@@ -20,6 +20,35 @@ The application is a cross-platform, open-source project built with Electron and
 > [!IMPORTANT]
 > **Official sources only.** IPTVnator is a free, open-source **player** — it never sells IPTV subscriptions, channels, or playlists. Websites offering "IPTVnator subscriptions/channels/premium/activated" builds are **not affiliated** with this project. Get the app only from the [official website](https://4gray.github.io/iptvnator/) or [GitHub Releases](https://github.com/4gray/iptvnator/releases). See [Beware of unofficial IPTVnator websites and IPTV services](https://4gray.github.io/iptvnator/blog/beware-unofficial-iptvnator-websites/) for details.
 
+## 🔱 About this fork (VlastikYoutubeKo/iptvnator)
+
+This is a fork of [4gray/iptvnator](https://github.com/4gray/iptvnator) with additional features. Grab installers for **Windows, macOS (Intel + Apple Silicon) and Linux (x64/arm64/armv7l — AppImage, deb, rpm, pacman, snap, flatpak)** from [this fork's Releases](https://github.com/VlastikYoutubeKo/iptvnator/releases).
+
+### What this fork adds
+
+- **URLs with embedded basic-auth credentials** — playlist and XMLTV EPG URLs like `https://user:pass@host/...` (e.g. tvheadend) are accepted. Credentials are extracted and sent as an HTTP Basic `Authorization` header, kept on same-origin redirects, dropped on cross-origin redirects, and never logged. Works in the desktop app and the self-hosted PWA proxy.
+- **Import from AMZ IPTV** — a new method in the Add playlist dialog: paste a share hash or a `https://iptv.tutoje.cz/?data=…` link and the app resolves it into a full Xtream Codes or Stalker portal account. The hash itself is never stored — the resolved account behaves exactly like a manually entered one. (PWA builds additionally need the deployed origin allow-listed on the AMZ server.)
+- **Bring-your-own TMDB API key** — fork builds ship **without** an embedded TMDB key. Enable metadata enrichment in *Settings → Metadata (TMDB)* and enter your personal API key (free for personal use — create one at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)). The settings section warns when enrichment is enabled without a key.
+- **"Signál" design (opt-in)** — *Settings → General → App design* switches between the classic look and a new design layer (condensed display typography inspired by printed TV listings, broadcast-red live indicator). Defaults to classic.
+- **Playback fixes**
+    - The built-in player no longer crashes on stream URLs with embedded credentials (`Request cannot be constructed from a URL that includes credentials`).
+    - Rapid channel zapping across MPEG-TS streams no longer dies with a SourceBuffer quota error misreported as "unsupported container" — the player now recovers automatically with a fresh MediaSource.
+    - The installed version is always shown in *Settings → About*, even when the update check fails (offline/rate limit).
+
+### Notes for tvheadend users
+
+- tvheadend must allow *plain* HTTP authentication (the default "Both plain and digest" works; digest-only is not supported).
+- An EPG source on a LAN address shows a one-time "allow private source" dialog — confirm it.
+- For streams the built-in player cannot decode (e.g. `profile=pass` MPEG-TS with MPEG-2 video or AC-3 audio), use an external player (MPV/VLC) — they handle `user:pass@` URLs natively.
+
+### Installing unsigned builds
+
+- **macOS**: builds are not code-signed/notarized. On first launch: right-click the app → **Open** → **Open**, or run `xattr -dc /Applications/IPTVnator.app`.
+- **Windows**: SmartScreen may show "Windows protected your PC" — choose *More info* → *Run anyway*.
+- The in-app auto-updater points at upstream releases; update this fork manually from its Releases page.
+
+---
+
 ![IPTVnator: Channels list, player and epg list](./apps/website/public/screenshots/screenshot-player.webp)
 
 ## Features
