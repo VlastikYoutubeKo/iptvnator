@@ -716,7 +716,7 @@ The factory pattern ensures a single codebase works in both environments without
 
 - `Settings → General → App design` switches between the classic look and the opt-in "Signál" design layer (persisted as `designStyle` in `Settings`).
 - `SettingsService.changeDesignStyle()` toggles the `signal-design` class on `<body>`; applied on app start in `app.component.ts` and immediately on selection in settings.
-- The layer's styles live in `apps/web/src/_signal-theme.scss` — display typography (Barlow Condensed via `--app-display-font`) and the dark-theme live-red token. New Signal-layer styles must be scoped under `body.signal-design` so the classic look stays untouched.
+- The layer's styles live in `apps/web/src/_signal-theme.scss` — a full app skin: re-grounded `--app-*` and `--mat-sys-*` token palettes for light and dark (blue-black surfaces, signal-blue accent, hairline widget borders), display typography (Barlow Condensed via `--app-display-font`) on content headings, the broadcast-red live token, and squarer Material button shapes. New Signal-layer styles must be scoped under `body.signal-design` (or `body.signal-design.dark-theme`) so the classic look stays untouched.
 
 ### Testing Strategy
 

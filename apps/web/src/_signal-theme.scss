@@ -1,24 +1,128 @@
 // ─── „Signál" design layer ───────────────────────────────────────────────────
-// Layer 1 of the Signal redesign concept: display typography + live-red
-// retune. Opt-in via Settings → General → App design; the `signal-design`
-// class is toggled on <body> by SettingsService.changeDesignStyle().
-// Token-level and heading-level only — no component layout changes.
+// Opt-in app-wide skin (Settings → General → App design). The `signal-design`
+// class is toggled on <body> by SettingsService.changeDesignStyle(); every
+// rule here MUST stay scoped under body.signal-design so the classic look is
+// byte-identical when the toggle is off.
+//
+// Concept: content carries the color, the chrome stays quiet. Blue-black
+// grounds, one "signal blue" accent, broadcast red reserved for live, and a
+// condensed display face that echoes printed TV listings.
 
 html {
-    // Condensed grotesque as the display face — a nod to printed TV listings;
-    // saves horizontal space in rail titles and EPG surfaces.
+    // Available globally so components can opt in; only applied under the
+    // signal-design scope below.
     --app-display-font: 'Barlow Condensed', 'Arial Narrow', 'DM Sans',
         sans-serif;
 }
 
-// Display face on primary content headings. Selectors are stable public
-// class names of the dashboard hero/rails, settings groups, and the
-// add-playlist dialog. Component styles keep their own sizes/colors.
+// ─── Light palette ───────────────────────────────────────────────────────────
+body.signal-design {
+    // App shell & navigation
+    --app-shell-bg: #e9ecf2;
+    --app-rail-bg: #e9ecf2;
+    --app-header-bg: #e9ecf2;
+    --app-content-bg: #eef1f6;
+    --app-selection-color: #2668e3;
+    --app-selection-on-color: #eef4ff;
+    --app-live-color: #e03d31;
+
+    // Widget surfaces — visible hairline borders instead of pure elevation
+    --app-widget-bg: #ffffff;
+    --app-widget-header-bg: #f5f7fa;
+    --app-widget-border: #d8dee9;
+    --app-widget-shadow: none;
+    --app-widget-header-border: #e2e7ef;
+    --app-card-hover-bg: #f0f3f8;
+    --app-separator: #d8dee9;
+
+    // Typography — blue-biased neutrals
+    --app-heading-color: #151a26;
+    --app-body-color: #4a5266;
+    --app-muted-color: #5c6577;
+    --app-eyebrow-color: #2668e3;
+
+    // Material system surfaces
+    --mat-sys-surface: #eef1f6;
+    --mat-sys-surface-container-low: #f4f6fa;
+    --mat-sys-surface-container: #ffffff;
+    --mat-sys-surface-container-high: #f5f7fa;
+    --mat-sys-surface-container-highest: #e7ebf2;
+    --mat-sys-on-surface: #151a26;
+    --mat-sys-on-surface-variant: #5c6577;
+    --mat-sys-outline: #b9c1d0;
+    --mat-sys-outline-variant: #d8dee9;
+    --mat-sys-primary: #2668e3;
+}
+
+// ─── Dark palette (primary face of the concept) ──────────────────────────────
+body.signal-design.dark-theme {
+    // App shell & navigation — deep blue-black, rail darker than content
+    --app-shell-bg: #07090d;
+    --app-rail-bg: #07090d;
+    --app-header-bg: #0b0d13;
+    --app-content-bg: #0b0d13;
+    --app-on-surface: #e9edf5;
+    --app-hover-overlay: rgba(233, 237, 245, 0.07);
+    --app-search-bg: rgba(233, 237, 245, 0.05);
+    --app-search-border: #232b3a;
+    --app-selection-color: #4d8dff;
+    --app-selection-on-color: #071022;
+
+    // Live / on-air — saturated broadcast red, used by nothing else
+    --app-live-color: #ff4f43;
+
+    --app-content-shadow: none;
+
+    // Widget surfaces — hairline borders on raised panels
+    --app-widget-bg: #12161f;
+    --app-widget-header-bg: #161b26;
+    --app-widget-border: #232b3a;
+    --app-widget-shadow: none;
+    --app-widget-header-border: #232b3a;
+    --app-card-hover-bg: #1a2029;
+    --app-separator: #232b3a;
+
+    // Typography — blue-biased, never pure white
+    --app-heading-color: #e9edf5;
+    --app-body-color: #9aa3b8;
+    --app-muted-color: #6b7488;
+    --app-eyebrow-color: #7ba4e8;
+
+    // Provider accents tuned to the palette
+    --app-provider-xtream: #4d8dff;
+    --app-provider-stalker: #2fbf8f;
+    --app-provider-m3u: #e2a13c;
+
+    // Hero
+    --app-accent-gradient: linear-gradient(
+        135deg,
+        rgba(77, 141, 255, 0.14) 0%,
+        rgba(77, 141, 255, 0.04) 100%
+    );
+    --app-hero-surface: rgba(18, 22, 31, 0.9);
+
+    // Material system surfaces
+    --mat-sys-surface: #0b0d13;
+    --mat-sys-surface-container-low: #10141c;
+    --mat-sys-surface-container: #12161f;
+    --mat-sys-surface-container-high: #1a2029;
+    --mat-sys-surface-container-highest: #202634;
+    --mat-sys-on-surface: #e9edf5;
+    --mat-sys-on-surface-variant: #8a93a8;
+    --mat-sys-outline: #3a4356;
+    --mat-sys-outline-variant: #232b3a;
+    --mat-sys-primary: #4d8dff;
+}
+
+// ─── Typography ──────────────────────────────────────────────────────────────
+// Display face on content headings across the app. Selectors are stable
+// public class names; component styles keep their own sizes/colors.
 body.signal-design {
     .hero__title,
     .rail__title,
     .settings-group__header-text h3,
-    .apd-title {
+    .apd-title,
+    .mat-mdc-dialog-title {
         font-family: var(--app-display-font);
         font-weight: 600;
     }
@@ -31,9 +135,16 @@ body.signal-design {
     }
 }
 
-// Live/on-air indicator: one saturated broadcast red reserved exclusively
-// for "now airing" signals (dot, now-line, timeshift). The classic dark
-// value (#ff8f8f) reads as washed pink and blends into the accent family.
-body.signal-design.dark-theme {
-    --app-live-color: #ff4f43;
+// ─── Component accents ───────────────────────────────────────────────────────
+body.signal-design {
+    // Slightly squarer, denser Material buttons
+    --mdc-filled-button-container-shape: 8px;
+    --mdc-outlined-button-container-shape: 8px;
+    --mdc-text-button-container-shape: 8px;
+    --mdc-protected-button-container-shape: 8px;
+
+    // Form fields follow the hairline-border language
+    .mat-form-field-appearance-outline .mat-mdc-text-field-wrapper {
+        background: var(--app-widget-bg);
+    }
 }
